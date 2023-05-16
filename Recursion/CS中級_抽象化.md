@@ -121,3 +121,5 @@ def calculate_goal_money(capital: int, year: int) -> int:
 - calculateInterestRate で金利の定義
 - calculateGoalMoney で i, year, capital を使って futurevalue を定義する
 - floor で小数点以下を切り捨てて出力
+
+## 関数の分解
