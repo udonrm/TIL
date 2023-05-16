@@ -79,8 +79,15 @@ i=0 の時$front は空文字になる
         return $stringInput[0];
     }
 
-    $start = $middle - floor($middle / 2);
+    $start = $middle - floor($middle / 2); //出力する文字のスタートを決める
 
     return substr($stringInput, $start, $middle);
 }
 ```
+
+```php
+$start = $middle - floor($middle / 2)
+```
+
+7 文字の文字列の場合<br>
+$start = 3- 1 = 2 だから 3 文字目から 3 つ分
