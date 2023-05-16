@@ -7,9 +7,7 @@ php では::でアクセスする<br>
 
 メソッド（method）:クラス内で定義された関数<br>
 
-使用例
-
-```text
+```text:使用例
 // クラス
 // 物理に関する法則をまとめる
 PhysicsThings:
@@ -33,7 +31,7 @@ static - インスタンスがなくても使用可能
 
 # Q 平方根の判定
 
-```php:
+```php:php
 <?php
 function isRationalNumber(int $number): bool{
 
@@ -52,7 +50,7 @@ $sqrt = sqrt($number);
 
 # Q アンダースコア
 
-```php:
+```php:php
 <?php
 function insertUnderscoreAt(string $s, int $i): string{
 
@@ -68,3 +66,21 @@ function insertUnderscoreAt(string $s, int $i): string{
 ```
 
 i=0 の時$front は空文字になる
+
+# Q 文字列の真ん中を返す
+
+```php:php
+<?php
+    function middleSubstring(string $stringInput): string {
+    $len = strlen($stringInput);
+    $middle = floor($len / 2);
+
+    if ($len <= 2) {
+        return $stringInput[0];
+    }
+
+    $start = $middle - floor($middle / 2);
+
+    return substr($stringInput, $start, $middle);
+}
+```
