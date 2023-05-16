@@ -30,3 +30,19 @@ newtonOnMoon:
 public static とは<br>
 public - どんなクラスでも使用可能<br>
 static - インスタンスがなくても使用可能
+
+# Q 平方根の判定
+
+```php:
+<?php
+function isRationalNumber(int $number): bool{
+
+$sqrt = sqrt($number);
+    if (intval($sqrt) ** 2 == $number){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+```
