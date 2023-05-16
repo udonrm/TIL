@@ -46,3 +46,25 @@ $sqrt = sqrt($number);
     }
 }
 ```
+
+- 4 の時平方根 2 を 2 乗して 4 になるので true
+- 5 の時平方根 2.236...で intval で整数に変換されると 2,これを 2 乗して 4 になるので false
+
+# Q アンダースコア
+
+```php:
+<?php
+function insertUnderscoreAt(string $s, int $i): string{
+
+    if ($i >= strlen($s)) {
+        return $s;
+    }
+
+    $front = substr($s, 0, $i); //先頭からi番目まで
+    $back = substr($s, $i); //i番目以降
+
+    return $front . "_" . $back;
+}
+```
+
+i=0 の時$front は空文字になる
