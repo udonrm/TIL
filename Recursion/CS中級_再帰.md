@@ -94,3 +94,16 @@ function numberOfDots(int $x): int{
     return numberOfDots($x-1) + $x;
 }
 ```
+
+## Q 正方形の合計面積
+
+x=n のとき S(n),x=n-1 のときを S(n-1)とすると,S(n) = S(n-1) + (n \**2) *n
+
+```php:
+<?php
+function totalSquareArea(int $x): int{
+    if ($x ==1) return 1;
+
+    return totalSquareArea($x-1) + pow($x, 3);
+}
+```
