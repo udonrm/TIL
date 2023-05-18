@@ -50,3 +50,47 @@ function lengthOfString($s){
 
 echo lengthOfString("ABCDE") . PHP_EOL;
 ```
+
+## 総和
+
+```php:
+<?php
+function summation($n){
+    if ($n <= 0){
+        return 0;
+    }
+
+    return summation($n-1) + $n;
+
+    echo summation(5);
+}
+```
+
+## 階乗
+
+```php:
+<?php
+function factorial($n){
+    if ($n <= 0 ){
+        return 1;
+    }
+
+    return factorial($n-1) * $n;
+}
+
+echo factorial(5) . PHP_EOL;
+```
+
+## Q パスカルの三角形
+
+n 番目に含まれる個数を d(n),n-1 番目に含まれる個数を d(n-1)とすると、d(n) = d(n-1) + n
+
+```php:
+<?php
+function numberOfDots(int $x): int{
+    //ベースケースで無限ループの回避
+    if ($x ==1) return 1;
+
+    return numberOfDots($x-1) + $x;
+}
+```
