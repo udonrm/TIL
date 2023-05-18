@@ -123,3 +123,44 @@ def calculate_goal_money(capital: int, year: int) -> int:
 - floor で小数点以下を切り捨てて出力
 
 ## 関数の分解
+
+タスクに応じて関数を割り当てる
+
+```php:
+<?php
+# ②文字の ASCII 値が奇数か偶数かチェックする関数
+function isCharCodeEven($stringChar){
+    $isEven = false;
+    /// ordで文字コードを手に入れます
+    if(ord($stringChar) % 2 === 0){
+        $isEven = true;
+    }
+    return $isEven;
+}
+
+// ①インデックスと文字列を受け取り、message を生成する関数
+//$stringの$indexの位置の文字を返す
+function chosenCharacter($index, $string){
+    return "The char [" . $string[$index] . "] at index " . $index;
+}
+
+// 本体の関数
+function randomCharEvenOrOddDecomposed($s){
+    // ランダムなインデックスを取得
+    $randomIndex = rand(0, strlen($s));
+
+    // 関数の分解①
+    $message = chosenCharacter($randomIndex,$s);
+
+    // 関数の分解②
+    if (isCharCodeEven($s[$randomIndex])) {
+        $message .= " is Even";
+    } else {
+        $message .= " is Odd";
+    }
+
+    return $message;
+}
+
+echo randomCharEvenOrOddDecomposed("Don't tell me lies.") . PHP_EOL;
+```
