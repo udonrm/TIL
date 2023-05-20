@@ -107,3 +107,41 @@ function totalSquareArea(int $x): int{
     return totalSquareArea($x-1) + pow($x, 3);
 }
 ```
+
+## Q 羊を数える
+
+S(n) = S(n-1) + "n sheep~"
+
+```php:
+<?php
+function sheeps(int $count): string{
+    // 関数を完成させてください
+    if ($count == 1) return "1 sheep ~ ";
+
+    return sheeps($count-1) . "$count sheep ~ ";
+}
+```
+
+## 文字列の逆表示
+
+```text
+文字列を受け取って反転した文字列を r(string)とする。
+r(abcd)
+d + r(abc)
+d + c + r(ab)
+d + c + b + r(a)
+d + c + b + a
+```
+
+文字列のカウントは mb_strlen 関数
+
+r(S) = substr("r", -1) + r(S-1)
+
+```php:
+<?php
+function reverseString(string $s): string{
+    if (mb_strlen($s) == 1) return $s;
+
+    return mb_substr($s, -1) . reverseString(mb_substr($s, 0, -1));
+}
+```
