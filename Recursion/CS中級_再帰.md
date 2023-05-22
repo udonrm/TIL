@@ -254,3 +254,36 @@ function getGreatestDivisorHelper($n, $k){
 
 $n =12の時、getGreatDivisor(12)が呼び出されてgetGreatestDivisionHelper(12,11)が返される。<br>
 次にgetGreatestDivisionHelper(12,11)で再帰関数が実行されていく。getGreatestDivisorHelper(12, 6)：12は6で割り切れるので、$k（つまり 6）を返す。これが最大公約数になる。
+
+## Q 正方形の合計枚数
+
+長方形の縦と横の最大公約数を求めてそれを１辺とする正方形をいくつ作れるかを計算する
+
+```php:php
+<?php
+
+function countSquare(int $x, int $y): int{
+    $squareEdge = gcd($x, $y);
+    return ($x / $squareEdge) * ($y / $squareEdge);
+}
+
+function gcd(int $x, int $y){
+    if (($x % $y) == 0) return $y;
+
+    return gcd($y, $x % $y);
+}
+```
+
+```python:python
+def gcd(x,y):
+    if x % y ==0:
+        return y
+    else
+        return gcd(y, x % y)
+
+def countSquare(x,y)
+    square_edge = gcd(x, y)
+    return (x // square_edge) * (y // square_edge)
+```
+
+python は//で切り捨て除算
