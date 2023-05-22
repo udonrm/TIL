@@ -137,7 +137,7 @@ d + c + b + a
 
 r(S) = substr("r", -1) + r(S-1)
 
-```php:
+```php:エラーが出たやつ
 <?php
 function reverseString(string $s): string{
     if (mb_strlen($s) == 1) return $s;
@@ -145,3 +145,112 @@ function reverseString(string $s): string{
     return mb_substr($s, -1) . reverseString(mb_substr($s, 0, -1));
 }
 ```
+
+```php:正答例
+<?php
+function reverseString(string $s): string{
+    // ベースケース
+    if (strlen($s) <= 1) return $s;
+    // substring関数を使って最後の1文字を切り取ります。
+    $subStr = substr($s, 0, strlen($s) - 1);
+    return $s[strlen($s) - 1] . reverseString($subStr);
+}
+```
+
+## 最大公約数
+
+最大公約数の再帰関数 g(m,n)は
+
+```
+n = 0のとき、gcd(m,n) = m
+n>0のとき、gcd(m,n) = gcd(n,m%n)
+```
+
+```php:php
+<?php
+function gcd($m, $n){
+
+    if (($m % $n) == 0) return $n;
+
+    return gcd($n, $m % $n);
+}
+```
+
+```python:python
+def gcd(m,n):
+    if (m % n) == 0:
+        return n
+    else:
+        return gcd(n, m % n)
+```
+
+## 平方根
+
+相対誤差：測定した値と理論値の差を、理論値で割った値を使って表す誤差のこと
+
+```text
+1000 kg と 1001 kg の差を求めたい場合、次のように計算できます。
+
+
+まず、測定値と理論値の差を求めます。
+
+1001 - 1000 = 1
+
+
+次に、この差を理論値で割ります。
+
+1 / 1000 = 0.001
+
+
+この値をパーセントに変換するために、100をかけます。
+
+0.001 * 100 = 0.1%
+
+
+この結果から、1000 kg と 1001 kg の間には 0.1% の相対誤差があることがわかります。つまり、測定値が理論値から 0.1% だけずれているということです。
+```
+
+```php:php
+<?php
+function isSquareRootCloseEnough($a, $b){
+    //abs(x)はxの絶対値を返す
+    return 100 * abs(($a - $b) / $b) < 0.01;
+}
+
+function squareRootHelper($x, $guess){
+    $newGuess = ($guess + $x/$guess)/2;
+
+    echo "guess : " . strval($guess) . PHP_EOL;
+    echo "new guess : " . strval($newGuess) . PHP_EOL;
+
+    if(isSquareRootCloseEnough($newGuess,$guess)) return $newGuess;
+
+    return squareRootHelper($x,($guess + $x/$guess)/2);
+}
+
+function squareRoot($x){
+    return sauareRootHelper($x, 1);
+}
+
+echo squareRoot(65);
+```
+
+```php:php
+/*
+自然数 n が与えられるので、n の約数のうち、n 自身を除く最大の数値を返す getGreatestDivisor という関数を定義しましょう。例えば、12 が与えられたとき、12 の約数 1,2,3,4,6,12 のうち、12 を除いた 6 を返します。
+*/
+<?php
+
+function getGreatDivisor($n){
+    return getGreatestDivisorHelper($n, $n-1);
+}
+
+function getGreatestDivisorHelper($n, $k){
+    if ($n % $k == 0) return $k;
+
+    return getGreatestDivisorHelper($n, $k-1);
+}
+```
+
+$n =12の時、getGreatDivisor(12)が呼び出されてgetGreatestDivisionHelper(12,11)が返される。<br>
+次にgetGreatestDivisionHelper(12,11)で再帰関数が実行されていく。getGreatestDivisorHelper(12, 6)：12は6で割り切れるので、$k（つまり 6）を返す。これが最大公約数になる。
