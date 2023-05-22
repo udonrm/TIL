@@ -366,3 +366,52 @@ def fibonacci(n):
         return 1
     return fibonacci(n - 1) + fibonacci(n - 2)
 ```
+
+## Q 3 で割り続ける
+
+```php
+<?php
+function divideBy3Count(int $n): int{
+    if ($n == 1) return 0;
+    return 1 + divideBy3Count($n / 3);
+}
+```
+
+```python
+def divideBy3Count(n):
+    if n == 1: return 0
+    return 1 + divideBy3Count(n / 3)
+```
+
+## Q 約数
+
+```php:
+<?php
+
+function divisorHelper($number, $current, $divisors){
+    if ($current > $number) {
+        return rtrim($divisors, '-');
+    }
+    if ($number % $current == 0){
+        $divisors .= $current . '-';
+    }
+    return divisorHelper($number, $current + 1, $divisors);
+}
+
+function divisor(int $number): string{
+    return divisorHelper($number, 1, '');
+}
+```
+
+```php
+<?php
+function divisor(int $number): string{
+    return divisorHelper($number, 1);
+}
+
+function divisorHelper(int $number, int $i):string {
+    if ($number <= $i) return $number;
+    if ($number % $i == 0) return $i . '-' . divisorHelper($number, $i+1);
+    return divisorHelper($number, $i+1);
+}
+```
