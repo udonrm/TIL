@@ -259,7 +259,7 @@ $n =12の時、getGreatDivisor(12)が呼び出されてgetGreatestDivisionHelper
 
 長方形の縦と横の最大公約数を求めてそれを１辺とする正方形をいくつ作れるかを計算する
 
-```php:php
+```php:PHP
 <?php
 
 function countSquare(int $x, int $y): int{
@@ -274,7 +274,7 @@ function gcd(int $x, int $y){
 }
 ```
 
-```python:python
+```python:Python
 def gcd(x,y):
     if x % y ==0:
         return y
@@ -287,3 +287,82 @@ def countSquare(x,y)
 ```
 
 python は//で切り捨て除算
+
+## Q 数字を分割して足す
+
+```text
+A(123) = A(12) + 3
+A(123) = A(floor(123/10)) + 123 % 10
+```
+
+```php
+<?php
+function splitAndAdd(int $digits): int{
+
+    if ($digits < 10) return $digits;
+
+    return splitAndAdd(floor($digits / 10)) + $digits % 10;
+}
+```
+
+12 が入力されたとき,2+splitAndAdd(intval(12/10))<br>
+次の再帰呼び出しは$digits=1 なので 1 + splitAndAdd(intval(1/10))になって $digits が基底ケースを満たす
+
+```python
+import math
+
+def splitAndAdd(digits):
+    if digits < 10: return digits
+    return digits % 10 + splitAndAdd(math.floor(digits / 10))
+```
+
+## 総和の総和
+
+```php
+<?php
+function simpleSummation($count){
+    if ($count <= 0) return 0;
+    return $count + simpleSummation($count -1);
+}
+
+function simpleSummationOfSummations($count){
+    if ($count<= 0) return 0;
+    return simpleSummation($count) + simpleSummationOfSummations($count-1);
+}
+```
+
+## フィボナッチ数列
+
+```php
+<?php
+function fibonacciNumber($n){
+    if ($n == 0) return 0;
+    else if($n == 1) return 1;
+
+    return fibonacciNumber($n - 1) + fibonacciNumber($n - 2);
+}
+```
+
+深さ優先探索：木の末端側から処理が徐々に実行される ←→ 幅優先探索
+
+## Q フィボナッチ数列
+
+```php
+<?php
+function fibonacci(int $n): int{
+    if ($n == 0) return 0;
+    else if ($n == 1) return 1;
+
+    return fibonacci($n - 1) + fibonacci($n - 2);
+}
+```
+
+```python
+def fibonacci(n):
+    # 関数を完成させてください
+    if n == 0:
+        return 0
+    elif n ==1:
+        return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
+```
