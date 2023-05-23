@@ -438,6 +438,7 @@ function howLongToReachFundGoalHelper(int $capitalMoney, int $goalMoney, int $in
 
 ```php
 //正答例
+<?php
 function howLongToReachFundGoal(int $capitalMoney,int $goalMoney,int $interest): int{
     return howLongToReachFundGoalHelper($capitalMoney,$goalMoney,$interest,0);
 }
@@ -454,4 +455,97 @@ function howLongToReachFundGoalHelper(float $capitalMoney,float $goalMoney,int $
     return howLongToReachFundGoalHelper($capitalMoney, $goalMoney, $interest, $year+1);
 }
 
+```
+
+## 末尾再帰
+
+再帰呼び出しが関数の最後の操作となる形式の再帰のこと
+https://zenn.dev/kj455/articles/dfa23c8357b274
+
+```php
+<?php
+function simpleSummationTail($n) {
+    // 途中結果を保存するため、引数を追加します
+    return simpleSummationTailHelper($n, 0);
+}
+
+// 補助関数
+function simpleSummationTailHelper($count, $total){
+    // ベースケースに達したら、計算結果を返します
+    if($count <= 0 ) {
+        return $total;
+    }
+
+    // total + count として、計算結果を足していきます
+    return simpleSummationTailHelper($count-1, $total+$count);
+}
+```
+
+```php:
+<?php
+// 末尾再帰を使って、n 番目のフィボナッチを返す関数を作成します
+function fibonacciNumberTailHelper($fn1, $fn2, $n){
+    if($n < 1) {
+        return $fn1;
+    }
+
+    return fibonacciNumberTailHelper($fn2, $fn1+$fn2, $n-1);
+}
+
+function fibonacciNumberTail($n){
+    // 補助関数を使用し、初期値 0, 1 を追加します
+    return fibonacciNumberTailHelper(0,1,$n);
+}
+```
+
+## Q フィボナッチ数列
+
+```php
+//末尾再帰を使って
+<?php
+
+function fibonacciTail(int $n): int{
+    return fibonacciTailHelper(0, 1, $n);
+}
+
+function fibonacciTailHelper(int $f1, int $f2, int $n): int{
+    if ($n == 0) return $f1;
+    return fibonacciTailHelper($f2, $f1+$f2, $n-1);
+}
+```
+
+## Q 数字の分割
+
+```php
+<?php
+function recursiveDigitsAdded(int $digits): int{
+    // 関数を完成させてください
+
+    if ($digits < 10) return $digits;
+
+    $sum = splitAndAdd($digits);
+
+    if ($sum < 10) return $sum;
+    return $sum + recursiveDigitsAdded($sum);
+}
+
+function splitAndAdd(int $current): int{
+    if ($current <10) return $current;
+    return $current % 10 + splitAndAdd(floor($current / 10));
+}
+```
+
+```python
+import math
+def recursiveDigitsAdded(digits):
+    if digits < 10: return digits
+
+    sum = splitAndAdd(digits)
+
+    if sum < 10: return sum
+    return sum + recursiveDigitsAdded(sum)
+
+def splitAndAdd(current):
+    if current < 10: return current
+    return current % 10 + splitAndAdd(math.floor(current / 10))
 ```
