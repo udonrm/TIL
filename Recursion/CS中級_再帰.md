@@ -9,7 +9,7 @@
 現在の段数が 0 でなければ、1 段下る
 ```
 
-```php:php
+```php
 <?php
 function multiply($m.$n-1) + $m;
     if ($n <= 0){
@@ -34,7 +34,7 @@ function multiply($m.$n-1) + $m;
 
 s.slice(0.-1)は先頭から最後の 1 つ前の文字まで全部
 
-```php:
+```php
 <?php
 //文字列の最後を切り取る
 echo substr("abcde", 0, -1) . PHP_EOL;
@@ -53,7 +53,7 @@ echo lengthOfString("ABCDE") . PHP_EOL;
 
 ## 総和
 
-```php:
+```php
 <?php
 function summation($n){
     if ($n <= 0){
@@ -68,7 +68,7 @@ function summation($n){
 
 ## 階乗
 
-```php:
+```php
 <?php
 function factorial($n){
     if ($n <= 0 ){
@@ -85,7 +85,7 @@ echo factorial(5) . PHP_EOL;
 
 n 番目に含まれる個数を d(n),n-1 番目に含まれる個数を d(n-1)とすると、d(n) = d(n-1) + n
 
-```php:
+```php
 <?php
 function numberOfDots(int $x): int{
     //ベースケースで無限ループの回避
@@ -99,7 +99,7 @@ function numberOfDots(int $x): int{
 
 x=n のとき S(n),x=n-1 のときを S(n-1)とすると,S(n) = S(n-1) + (n \**2) *n
 
-```php:
+```php
 <?php
 function totalSquareArea(int $x): int{
     if ($x ==1) return 1;
@@ -112,7 +112,7 @@ function totalSquareArea(int $x): int{
 
 S(n) = S(n-1) + "n sheep~"
 
-```php:
+```php
 <?php
 function sheeps(int $count): string{
     // 関数を完成させてください
@@ -137,7 +137,7 @@ d + c + b + a
 
 r(S) = substr("r", -1) + r(S-1)
 
-```php:エラーが出たやつ
+```php
 <?php
 function reverseString(string $s): string{
     if (mb_strlen($s) == 1) return $s;
@@ -146,7 +146,8 @@ function reverseString(string $s): string{
 }
 ```
 
-```php:正答例
+```php
+//正答例
 <?php
 function reverseString(string $s): string{
     // ベースケース
@@ -166,7 +167,7 @@ n = 0のとき、gcd(m,n) = m
 n>0のとき、gcd(m,n) = gcd(n,m%n)
 ```
 
-```php:php
+```php
 <?php
 function gcd($m, $n){
 
@@ -176,7 +177,7 @@ function gcd($m, $n){
 }
 ```
 
-```python:python
+```python
 def gcd(m,n):
     if (m % n) == 0:
         return n
@@ -210,7 +211,7 @@ def gcd(m,n):
 この結果から、1000 kg と 1001 kg の間には 0.1% の相対誤差があることがわかります。つまり、測定値が理論値から 0.1% だけずれているということです。
 ```
 
-```php:php
+```php
 <?php
 function isSquareRootCloseEnough($a, $b){
     //abs(x)はxの絶対値を返す
@@ -235,7 +236,7 @@ function squareRoot($x){
 echo squareRoot(65);
 ```
 
-```php:php
+```php
 /*
 自然数 n が与えられるので、n の約数のうち、n 自身を除く最大の数値を返す getGreatestDivisor という関数を定義しましょう。例えば、12 が与えられたとき、12 の約数 1,2,3,4,6,12 のうち、12 を除いた 6 を返します。
 */
@@ -259,7 +260,7 @@ $n =12の時、getGreatDivisor(12)が呼び出されてgetGreatestDivisionHelper
 
 長方形の縦と横の最大公約数を求めてそれを１辺とする正方形をいくつ作れるかを計算する
 
-```php:PHP
+```php
 <?php
 
 function countSquare(int $x, int $y): int{
@@ -274,7 +275,7 @@ function gcd(int $x, int $y){
 }
 ```
 
-```python:Python
+```python
 def gcd(x,y):
     if x % y ==0:
         return y
@@ -385,9 +386,8 @@ def divideBy3Count(n):
 
 ## Q 約数
 
-```php:
+```php
 <?php
-
 function divisorHelper($number, $current, $divisors){
     if ($current > $number) {
         return rtrim($divisors, '-');
@@ -419,7 +419,7 @@ function divisorHelper(int $number, int $i):string {
 
 ## Q 投資の計算
 
-```php:
+```php
 <?php
 function howLongToReachFundGoal(int $capitalMoney, int $goalMoney, int $interest): int {
     return howLongToReachFundGoalHelper($capitalMoney, $goalMoney, $interest, 0);
@@ -481,7 +481,7 @@ function simpleSummationTailHelper($count, $total){
 }
 ```
 
-```php:
+```php
 <?php
 // 末尾再帰を使って、n 番目のフィボナッチを返す関数を作成します
 function fibonacciNumberTailHelper($fn1, $fn2, $n){
