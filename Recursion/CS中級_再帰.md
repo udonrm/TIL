@@ -404,6 +404,7 @@ function divisor(int $number): string{
 ```
 
 ```php
+//正答例
 <?php
 function divisor(int $number): string{
     return divisorHelper($number, 1);
@@ -414,4 +415,43 @@ function divisorHelper(int $number, int $i):string {
     if ($number % $i == 0) return $i . '-' . divisorHelper($number, $i+1);
     return divisorHelper($number, $i+1);
 }
+```
+
+## Q 投資の計算
+
+```php:
+<?php
+function howLongToReachFundGoal(int $capitalMoney, int $goalMoney, int $interest): int {
+    return howLongToReachFundGoalHelper($capitalMoney, $goalMoney, $interest, 0);
+}
+
+function howLongToReachFundGoalHelper(int $capitalMoney, int $goalMoney, int $interest, int $year) {
+    if ($year >= 80) return 80;
+    if($capitalMoney >= $goalMoney) return $year;
+
+    $newCapitalMoney = $capitalMoney * (1 + $interest/100);
+    $newGoalMoney = $goalMoney * (1 + ($year % 2 == 0 ? 2 : 3)/100);
+
+    return howLongToReachFundGoalHelper($newCapitalMoney, $newGoalMoney, $interest, $year+1);
+}
+```
+
+```php
+//正答例
+function howLongToReachFundGoal(int $capitalMoney,int $goalMoney,int $interest): int{
+    return howLongToReachFundGoalHelper($capitalMoney,$goalMoney,$interest,0);
+}
+
+function howLongToReachFundGoalHelper(float $capitalMoney,float $goalMoney,int $interest,int $year): int{
+    if ($capitalMoney >= $goalMoney) return $year;
+    if ($year >= 80) return 80;
+
+    if ($year % 2 == 0) $goalMoney *= 1.02;
+    else $goalMoney *= 1.03;
+
+    $capitalMoney *= (1+$interest/100);
+
+    return howLongToReachFundGoalHelper($capitalMoney, $goalMoney, $interest, $year+1);
+}
+
 ```
