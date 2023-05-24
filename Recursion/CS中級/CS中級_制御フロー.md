@@ -1,0 +1,46 @@
+# 制御フロー
+
+## 条件付き三項演算子
+
+3 つのオペランドを op1, op2, op3 とすると、疑問符 (?) とコロン (:) を用いて、以下のように表現される
+
+```text
+op1 ? op2 : op3
+```
+
+op1 が true の時 op2 を返して false の時 op3 を返す
+
+```php
+<?php
+function isEven($n){
+    return ($n % 2 == 0) ? "The number" . $n . "is even" : "The number" . $n . "is odd";
+}
+```
+
+## Q ポートレートモード
+
+```php
+<?php
+
+function screenViewMode(int $height, int $width): string{
+    // 関数を完成させてください
+    return $height >= $width ? "portrait" : "landscape";
+}
+```
+
+```python
+def screenViewMode(height, width):
+    return "portrait" if height >= width else "landscape"
+```
+
+```php
+//入れ子構造での三項演算子
+<?php
+function monsterAttackExpressionNest($monster){
+    $attack = 1000;
+    $message = "'s attack is:";
+
+    //op1 ? op2 : (op3 ? op4 : op5)
+    return $monster == "Cyclops" ? "Cyclops" . $message . $attack*1.8 : ($monster == "Orge" ? "Orge" . $message . $attack*2.5 :($monster == "Zombie" ?  "Zombie" . $message . $attack*1.2 : "Monster does not exist."));
+}
+```
