@@ -1,1 +1,48 @@
 # HTML
+
+練習問題(1)
+
+## 課題 1
+
+```HTML
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>課題1</title>
+  </head>
+
+  <body>
+    <h1>自己紹介</h1>
+    <p><strong>名前:</strong>Name</p>
+    <p><strong>出身地: </strong>東京都</p>
+    <p><strong>資格</strong></p>
+    <ul>
+      <li>基本情報技術者</li>
+      <li>応用情報技術者</li>
+      <li>甲種危険物取扱者</li>
+    </ul>
+
+    <p><strong>趣味</strong></p>
+    <ol>
+      <li><a href="https://cdn.pixabay.com/photo/2015/05/29/19/18/bicycle-789648__340.jpg">サイクリング</a></li>
+      <img
+        src="https://cdn.pixabay.com/photo/2015/05/29/19/18/bicycle-789648__340.jpg"
+        height="200"
+        width="250"
+      />
+      <li><a href="https://cdn.pixabay.com/photo/2014/05/22/22/05/photo-351528__340.jpg">カメラ</a></li>
+      <img
+        src="https://cdn.pixabay.com/photo/2014/05/22/22/05/photo-351528__340.jpg"
+        height="200"
+        width="250"
+      />
+    </ol>
+
+    <h2>一言</h2>
+    <p>画像を使う際は<strong>著作権</strong>に気をつけてください。</p>
+  </body>
+</html>
+```
