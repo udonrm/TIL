@@ -174,3 +174,157 @@ h3 {
   width: 100%;
 }
 ```
+
+# 練習問題(4)
+
+## 課題 1
+
+```html
+<header>
+  <h1>My Portfolio</h1>
+  <ul>
+    <li>ABOUT</li>
+    <li>WORKS</li>
+    <li>NEWS</li>
+    <li>CONTACT</li>
+  </ul>
+</header>
+```
+
+```css
+header {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: var(--info);
+  padding: 0 var(--medium);
+}
+
+.nav-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  list-style: none;
+  padding-left: 0;
+}
+```
+
+## 課題 2
+
+```html
+<footer>
+  <div class="icons">
+    <a href="#"
+      ><img src="https://img.icons8.com/color/344/instagram-new--v1.png" alt=""
+    /></a>
+    <a href="#"
+      ><img src="https://img.icons8.com/color/344/twitter--v1.png" alt=""
+    /></a>
+    <a href="#"
+      ><img
+        src="https://img.icons8.com/external-justicon-flat-justicon/344/external-facebook-social-media-justicon-flat-justicon.png"
+        alt=""
+    /></a>
+  </div>
+
+  <p>© 2020 My Portfolio</p>
+</footer>
+```
+
+```css
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--small);
+  color: var(--info);
+}
+
+footer img {
+  width: var(--medium);
+  padding: var(--small);
+}
+```
+
+## 課題 3
+
+```html
+<div class="container">
+  <div class="archives">
+    <img
+      src="https://cdn.pixabay.com/photo/2022/05/18/12/04/flower-7205105_960_720.jpg"
+      alt=""
+    />
+    <img
+      src="https://cdn.pixabay.com/photo/2020/04/30/03/26/rufous-5111261_960_720.jpg"
+      alt=""
+    />
+    <img
+      src="https://cdn.pixabay.com/photo/2022/07/22/13/23/coast-7338147_960_720.jpg"
+      alt=""
+    />
+    <img
+      src="https://cdn.pixabay.com/photo/2022/06/28/15/21/bach-7289941_960_720.jpg"
+      alt=""
+    />
+    <img
+      src="https://cdn.pixabay.com/photo/2022/05/03/17/42/animals-7172323_960_720.jpg"
+      alt=""
+    />
+  </div>
+</div>
+```
+
+```css
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.archives {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.archives img {
+  width: var(--img-width);
+  margin: var(--small);
+}
+```
+
+## 課題 4
+
+```html
+<button>See More ></button>
+```
+
+```css
+button {
+  background-color: var(--info);
+  color: var(--white);
+  padding: var(--small) var(--medium);
+  margin: var(--small);
+  border: none;
+}
+```
+
+## 課題 5
+
+```css
+@media (min-width: 768px) {
+  header {
+    justify-content: space-between;
+  }
+  .nav {
+    width: 50%;
+  }
+
+  footer {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+```
