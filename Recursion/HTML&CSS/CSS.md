@@ -328,3 +328,108 @@ button {
   }
 }
 ```
+
+# 練習問題 5
+
+## 課題 1
+
+```css
+/* 計算機本体が画面中央にくるように配置してください */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 計算機本体の色、形、サイズ、paddingを指定してください */
+.calc-body {
+  width: 300px;
+  border-radius: 10px;
+  background-color: var(--color-black);
+  padding: var(--medium);
+}
+```
+
+## 課題 2
+
+```css
+h1 {
+  padding: 0;
+  margin: 0;
+  color: var(--color-white);
+}
+
+h1::first-letter {
+  color: var(--color-orange);
+  font-size: var(--font-large);
+}
+```
+
+## 課題 3
+
+```css
+/* 表示枠の色、文字の色、表示枠の高さ、文字が表示される位置（右揃え）を指定してください */
+#result {
+  width: 65%;
+  padding-right: var(--medium);
+  background-color: var(--color-darkgray);
+  color: var(--color-white);
+  font-size: var(--font-size);
+  text-align: end;
+  line-height: 1.7;
+}
+
+/* 横一列ボタンの中のボタンの配置*/
+.btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* それぞれのボタンの大きさ、形、文字の色と大きさ */
+.btn {
+  width: var(--btn-size);
+  height: var(--btn-size);
+  margin: var(--small) 0;
+  border-radius: 50%;
+  color: var(--color-white);
+  font-size: var(--font-size);
+}
+
+/* ボタンの色 opd: 数字 op: 演算子 */
+.opd {
+  background-color: var(--color-darkgray);
+}
+
+.op {
+  background-color: var(--color-orange);
+}
+```
+
+## 課題 4
+
+```css
+/* ボタンを押した時にボタンの大きさが小さくなるアニメーションを作成してください */
+.btn:active {
+  transform: scale(0.8);
+}
+
+/* ボタンの色 opd: 数字 op: 演算子 */
+.opd {
+  background-color: var(--color-darkgray);
+}
+
+.opd:hover {
+  background-color: var(--color-lightgray);
+}
+
+.op {
+  background-color: var(--color-orange);
+}
+
+.op:hover {
+  background-color: var(--color-white);
+  color: var(--color-orange);
+}
+```
