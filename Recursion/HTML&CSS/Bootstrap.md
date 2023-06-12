@@ -504,5 +504,152 @@
 ## 昆虫採集アプリ
 
 ```html
+<!-- Font Awesome の読み込み -->
+<link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet" />
 
+<!-- Bootstrap の読み込み -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+<header>
+   <!-- 公式ドキュメントhttps://getbootstrap.com/docs/4.4/components/navbar/ を参考にグローバルナビゲーションを作成してください -->
+  <div class = "container-fluid px-0">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+      <div class = "container">
+        <a class="navbar-brand" href="#">
+        <img
+        src="https://img.icons8.com/external-vitaliy-gorbachev-flat-vitaly-gorbachev/452/external-bug-gardening-vitaliy-gorbachev-flat-vitaly-gorbachev.png"
+        alt=""
+        width="30"
+        height="30"
+        class = "d-inlline-block align-top"
+        />
+          Insect Collecting
+        </a>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Category
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Butterfly</a>
+          <a class="dropdown-item" href="#">Beetle</a>
+          <a class="dropdown-item" href="#">Grasshopper</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About us</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-light my-2 my-sm-0 text-white" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+</header>
+
+<main>
+   <!-- main contents -->
+   <!-- 昆虫の標本を並べる箱caseを作成して昆虫の画像を配置してください。見本の画像は以下を利用しています。
+   Yellow Swallowtail : https://cdn.pixabay.com/photo/2017/09/29/08/57/nature-2798395_960_720.png
+   Yellow Pansy : https://cdn.pixabay.com/photo/2017/09/29/08/57/nature-2798394_960_720.png
+   Scarlet Mormon : https://cdn.pixabay.com/photo/2017/09/17/09/19/nature-2757897_960_720.png
+   Cupha Erymanthis : https://cdn.pixabay.com/photo/2017/11/02/17/51/butterfly-2911908_960_720.png
+   Paper Kite : https://cdn.pixabay.com/photo/2017/11/02/17/45/butterfly-2911900_960_720.png
+   Asian Swallowtail : https://cdn.pixabay.com/photo/2016/11/26/05/59/butterfly-1860092_960_720.png
+   Scarce Swallowtail : https://cdn.pixabay.com/photo/2016/08/18/11/50/butterfly-1602726_960_720.png -->
+  <div class = "container text-center mb-5">
+    <h2 class = "text-success">Butterfly</h2>
+    <div class = "container case border border-secondary">
+      <div class = "row justify-content-center py-3">
+
+        <div class = "col-12 col-md-3 d-flex align-items-end py-3">
+          <div class = "row flex-column align-items-center">
+            <img class = "insect-img col-10 mb-3" src = "https://cdn.pixabay.com/photo/2017/09/29/08/57/nature-2798395_960_720.png">
+            <p class = "col-6 col-md-9 bg-light border border-success text-center">
+              Yellow Swallowtail
+            </p>
+            <button class = "col-6 col-md-9 btn btn-sm btn-success">Show Description</button>
+          </div>
+        </div>
+
+        <div class = "col-12 col-md-3 d-flex align-items-end py-3">
+          <div class = "row flex-column align-items-center">
+            <img class = "insect-img col-10 mb-3" src = "https://cdn.pixabay.com/photo/2017/09/29/08/57/nature-2798394_960_720.png">
+            <p class = "col-6 col-md-9 bg-light border border-success text-center">
+              Yellow Pansy
+            </p>
+            <button class = "col-6 col-md-9 btn btn-sm btn-success">Show Description</button>
+          </div>
+        </div>
+
+        <div class = "col-12 col-md-3 d-flex align-items-end py-3">
+          <div class = "row flex-column align-items-center">
+            <img class = "insect-img col-10 mb-3" src = "https://cdn.pixabay.com/photo/2017/09/17/09/19/nature-2757897_960_720.png">
+            <p class = "col-6 col-md-9 bg-light border border-success text-center">
+              Scarlet Mormon
+            </p>
+            <button class = "col-6 col-md-9 btn btn-sm btn-success">Show Description</button>
+          </div>
+        </div>
+
+        <div class = "col-12 col-md-3 d-flex align-items-end py-3">
+          <div class = "row flex-column align-items-center">
+            <img class = "insect-img col-10 mb-3" src = "https://cdn.pixabay.com/photo/2017/11/02/17/51/butterfly-2911908_960_720.png">
+            <p class = "col-6 col-md-9 bg-light border border-success text-center">
+              Cupha Erymanthis
+            </p>
+            <button class = "col-6 col-md-9 btn btn-sm btn-success">Show Description</button>
+          </div>
+        </div>
+
+        <div class = "col-12 col-md-3 d-flex align-items-end py-3">
+          <div class = "row flex-column align-items-center">
+            <img class = "insect-img col-10 mb-3" src = "https://cdn.pixabay.com/photo/2017/11/02/17/45/butterfly-2911900_960_720.png">
+            <p class = "col-6 col-md-9 bg-light border border-success text-center">
+              Paper Kite
+            </p>
+            <button class = "col-6 col-md-9 btn btn-sm btn-success">Show Description</button>
+          </div>
+        </div>
+
+        <div class = "col-12 col-md-3 d-flex align-items-end py-3">
+          <div class = "row flex-column align-items-center">
+            <img class = "insect-img col-10 mb-3" src = "https://cdn.pixabay.com/photo/2016/11/26/05/59/butterfly-1860092_960_720.png">
+            <p class = "col-6 col-md-9 bg-light border border-success text-center">
+              Asian Swallowtail
+            </p>
+            <button class = "col-6 col-md-9 btn btn-sm btn-success">Show Description</button>
+          </div>
+        </div>
+
+        <div class = "col-12 col-md-3 d-flex align-items-end py-3">
+          <div class = "row flex-column align-items-center">
+            <img class = "insect-img col-10 mb-3" src = "https://cdn.pixabay.com/photo/2016/08/18/11/50/butterfly-1602726_960_720.png">
+            <p class = "col-6 col-md-9 bg-light border border-success text-center">
+              Scarce Swallowtail
+            </p>
+            <button class = "col-6 col-md-9 btn btn-sm btn-success">Show Description</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class = "footer bg-success mt-auto py-2">
+  <div class= "container text-center text-white">
+    <span>© 2022 Insect Collecting</span>
+  </div>
+</footer>
+
+<!-- Bodyの閉じタグ直前で、JavaScriptを読み込んでください。
+公式ドキュメント https://getbootstrap.com/docs/4.4/getting-started/introduction/#js を参照してください。 -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 ```
