@@ -15,5 +15,6 @@
 ## 変更履歴確認その他
 
 ```
-git statusで確認
+git statusで変更状況の確認
+git diffで変更差分の確認
 ```
