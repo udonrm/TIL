@@ -26,4 +26,19 @@ git diffで変更差分の確認
 git checkout -- <ファイル名>コマンド
 
 ステージした変更の取り消し：git reset HEAD <ファイル名>
+
+直前のコミットをやり直す：git commit --amend
+```
+
+## GitHub とやりとりしよう
+
+```
+リモートの表示：git remote (-v)
+リモートリポジトリを新規で複数追加できる
+リモートから情報を取得する：git fetch <リモート名>, git pull <リモート名><ブランチ名>
+
+fetchとpullの使い分け
+
+リモートの詳細情報の表示：git remote show<リモート名>
+リモートの変更、削除：git remote rename <old remote name> <new remote name> , git remote rm <remote name>
 ```
