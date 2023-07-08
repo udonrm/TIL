@@ -42,3 +42,22 @@ fetchとpullの使い分け
 リモートの詳細情報の表示：git remote show<リモート名>
 リモートの変更、削除：git remote rename <old remote name> <new remote name> , git remote rm <remote name>
 ```
+
+## branch と merge
+
+```
+branchはコミットを指すポインタ
+
+ブランチの新規追加：git branch <branch name>
+ブランチの切り替え：git checkout <既存のブランチ名>
+
+変更のマージ（他の人の変更内容を取り込む作業）:git merge <ブランチ名>
+
+コンフリクト（同じファイルの同じ行に対して異なる編集を行った時）の解決
+
+コンフリクトが起きないようにするには：複数人で同じファイルを変更しない、pullやmergeの前に変更中の状態を無くしておく、pullするときはpullするブランチに移動してからpullする
+
+ブランチの変更：git branch -m <ブランチ名>
+ブランチの削除：git branch -d <ブランチ名>
+
+```
