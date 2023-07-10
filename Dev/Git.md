@@ -91,3 +91,12 @@ GitHubにプッシュしたコミットをリベースしない
 
 タグをリモートリポジトリに送信：git push [リモート名] [タグ名]
 ```
+
+## スタッシュで作業を一時避難する
+
+```
+git stash：作業を一時避難
+git stash list：避難した作業を表示
+git stash apply：避難した作業を復元
+git stash drop：最新の作業を削除
+```
