@@ -457,8 +457,8 @@ console.log(innerFlex);
 ## カードの左半分の作成
 
 ```js
-let leftPart = document.createElement("div");
-leftPart.classList.add("col-8", "py-3");
+let leftInfo = document.createElement("div");
+leftInfo.classList.add("col-8", "py-3");
 
 let div1 = document.createElement("div");
 div1.classList.add("py-2");
@@ -483,7 +483,7 @@ div2.append(employeeSkill);
 employeeCountry.innerHTML = "Country : " + "<br>" + "United States";
 div3.append(employeeCountry);
 
-leftPart.append(nameTitle);
+leftInfo.append(nameTitle);
 leftInfo.append(div1);
 leftInfo.append(div2);
 leftInfo.append(div3);
@@ -504,4 +504,30 @@ console.log(leftPart);
     <p>Country : <br />United States</p>
   </div>
 </div>
+```
+
+## カードの右半分の作成
+
+```js
+let rightInfo = document.createElement("div");
+let div4 = document.createElement("div");
+rightInfo.classList.add(
+  "col-4",
+  "d-flex",
+  "justify-content-center",
+  "align-items-center"
+);
+
+let avatar = document.createElement("img");
+avatar.classList.add("avatar");
+avatar.src =
+  "https://pbs.twimg.com/profile_images/501759258665299968/3799Ffxy.jpeg";
+
+div4.append(avatar);
+rightInfo.append(div4);
+
+cardDiv.append(leftInfo);
+cardDiv.append(rightInfo);
+
+document.getElementById("profiles").append(innerFlex);
 ```
