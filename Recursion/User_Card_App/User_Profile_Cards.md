@@ -268,6 +268,153 @@ function renderFruit(fruit, ele) {
 }
 
 let fruitContainer = document.getElementById("fruit-container");
+
+// 関数の呼び出し
+renderFruit("banana", fruitContainer);
+renderFruit("pear", fruitContainer);
+renderFruit("pineapple", fruitContainer);
+renderFruit("coconut", fruitContainer);
+renderFruit("grape", fruitContainer);
 ```
 
 ## フルーツのレンダリング(上級者向け)
+
+```html
+<head>
+  <!-- Bootstrapの読み込み -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div>
+  <div id="fruit-container" class="row">
+    <!-- ここに画像と説明を追加します。 -->
+  </div>
+</div>
+```
+
+```css
+.fruitImg {
+  width: 100px;
+  height: 100px;
+  padding: 1em;
+}
+
+.fruitDiv {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 25%;
+  margin-top: 2em;
+}
+```
+
+```js
+function fruitImgUrlTable(fruit) {
+  const fruitTable = {
+    banana: "https://www.kroger.com/product/images/xlarge/front/0000000004011",
+    pineapple:
+      "https://www.kroger.com/product/images/medium/front/0000000004430",
+    pear: "https://www.producemarketguide.com/media/user_RZKVrm5KkV/22481/forelle-pears_variety-page.png",
+  };
+
+  const defaultUrl =
+    "https://upload.wikimedia.org/wikipedia/commons/2/2f/Culinary_fruits_front_view.jpg";
+
+  // それぞれのフルーツのURLかデフォルトのURLを返します。もしキーが見つからなかったらundefinedが返されます。
+  return fruitTable[fruit] !== undefined ? fruitTable[fruit] : defaultUrl;
+}
+
+function renderFruit(fruit, ele) {
+  let fruitP = document.createElement("p");
+  fruitP.innerHTML = "Our fruit is : " + fruit;
+
+  let fruitImg = document.createElement("img");
+
+  fruitImg.src = fruitImgUrlTable(fruit);
+
+  fruitImg.classList.add("fruitImg");
+
+  let fruitDiv = document.createElement("div");
+  fruitDiv.classList.add("fruitDiv");
+  fruitDiv.append(fruitP);
+  fruitDiv.append(fruitImg);
+
+  ele.append(fruitDiv);
+}
+
+let fruitContainer = document.getElementById("fruit-container");
+
+// 関数の呼び出し
+renderFruit("banana", fruitContainer);
+renderFruit("pear", fruitContainer);
+renderFruit("pineapple", fruitContainer);
+renderFruit("coconut", fruitContainer);
+renderFruit("grape", fruitContainer);
+```
+
+## HTMl の作成
+
+```html
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+  integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+  crossorigin="anonymous"
+/>
+
+<div
+  class="vh-100 bg-dark d-flex flex-column justify-content-center align-items-center"
+>
+  <div class="d-flex align-items-center col-md-7 col-10 m-1">
+    <div class="d-flex col-12 profile-card">
+      <div class="col-8 py-3">
+        <h4>Kaiden Herman</h4>
+        <div class="py-2">
+          <p>Job :</p>
+          <p>Software Engineer</p>
+        </div>
+        <div class="py-2">
+          <p>Skill :</p>
+          <p>C++, C#, Java, PHP, JavaScript, Python</p>
+        </div>
+        <div class="py-2">
+          <p>Country :</p>
+          <p>United States</p>
+        </div>
+      </div>
+      <div class="col-4 d-flex justify-content-center align-items-center">
+        <div>
+          <img
+            class="avatar"
+            src="https://pbs.twimg.com/profile_images/501759258665299968/3799Ffxy.jpeg"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+```css
+.avatar {
+  width: 100%;
+  height: auto;
+  padding: 1em;
+}
+
+p {
+  font-family: Futura;
+  margin: 0 !important;
+  letter-spacing: 0.02em;
+}
+
+.profile-card {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+```
