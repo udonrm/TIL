@@ -418,3 +418,90 @@ p {
   border-radius: 10px;
 }
 ```
+
+## カード全体の作成
+
+```js
+// <div class="vh-100 bg-dark d-flex flex-column justify-content-center align-items-center">
+
+// この部分をJavaScriptによって作成し、コンソールに出力してください。
+//     <div class="d-flex align-items-center col-md-7 col-10 m-1">
+//         <div class="d-flex col-12 profile-card">
+//         </div>
+//     </div>
+
+// </div>
+
+// classList.add()関数は複数のクラスをパラメータとして受け取ることができます。
+// 例. classList.add("bg-danger", "d-flex", "text-dark");
+
+// ここからJavaScriptを記述してTODOをクリアしてください。
+
+let innerFlex = document.createElement("div");
+innerFlex.classList.add(
+  "d-flex",
+  "align-items-center",
+  "col-md-7",
+  "col-10",
+  "m-1"
+);
+
+let cardDiv = document.createElement("div");
+innerFlex.append(cardDiv);
+
+cardDiv.classList.add("d-flex", "col-12", "profile-card");
+
+console.log(innerFlex);
+```
+
+## カードの左半分の作成
+
+```js
+let leftPart = document.createElement("div");
+leftPart.classList.add("col-8", "py-3");
+
+let div1 = document.createElement("div");
+div1.classList.add("py-2");
+
+let div2 = div1.cloneNode(true);
+let div3 = div1.cloneNode(true);
+
+let nameTitle = document.createElement("h4");
+nameTitle.innerHTML = "Kaiden Herman";
+
+let employeeJob = document.createElement("p");
+let employeeSkill = document.createElement("p");
+let employeeCountry = document.createElement("p");
+
+employeeJob.innerHTML = "Job:" + "<br>" + "Software  Engineer";
+div1.append(employeeJob);
+
+employeeSkill.innerHTML =
+  "Skill: " + "<br>" + "C++, C#, Java, PHP, JavaScript, Python";
+div2.append(employeeSkill);
+
+employeeCountry.innerHTML = "Country : " + "<br>" + "United States";
+div3.append(employeeCountry);
+
+leftPart.append(nameTitle);
+leftInfo.append(div1);
+leftInfo.append(div2);
+leftInfo.append(div3);
+
+console.log(leftPart);
+```
+
+```html
+<div class="col-8 py-3">
+  <h4>Kaiden Herman</h4>
+  <div class="py-2">
+    <p>Job: <br />Software Engineer</p>
+  </div>
+  <div class="py-2">
+    <p>Skill: <br />C++, C#, Java, PHP, JavaScript, Python</p>
+  </div>
+  <div class="py-2">
+    <p>Country : <br />United States</p>
+  </div>
+</div>
+```
