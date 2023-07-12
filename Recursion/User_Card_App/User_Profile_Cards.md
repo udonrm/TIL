@@ -896,3 +896,124 @@ let employees = [employee1, employee2, employee3];
 
 employees.map((employee) => profileDiv.append(createEmployeeCard(employee)));
 ```
+
+## Motivational Speech Wallpaper
+
+```html
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+  integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+  crossorigin="anonymous"
+/>
+
+<div
+  id="target"
+  class="py-5 bg-white d-flex flex-column justify-content-center align-items-center"
+></div>
+```
+
+```css
+.container {
+  width: 100%;
+}
+
+.imgBackground {
+  background-size: cover;
+}
+```
+
+```js
+function motivationalSpeechWallpaper(paperObject) {
+  let container = document.createElement("div");
+  container.classList.add("container", "d-flex", "justify-content-center");
+
+  let wallPaper = document.createElement("div");
+  wallPaper.classList.add(
+    "vh-75",
+    "p-md-5",
+    "p-3",
+    "my-5",
+    "col-md-8",
+    "col-12",
+    "d-flex",
+    "imgBackground"
+  );
+  wallPaper.style.backgroundImage = `url('${paperObject.paperImgUrl}')`;
+
+  wallPaper.classList.add(paperObject.horizontalPosition);
+  wallPaper.classList.add(paperObject.verticalPosition);
+
+  let speechPart = document.createElement("div");
+  speechPart.classList.add("col-8");
+
+  let motivationalSpeech = document.createElement("h3");
+  motivationalSpeech.classList.add("paperText");
+  motivationalSpeech.innerHTML = paperObject.text;
+  motivationalSpeech.style.color = `#${paperObject.colorCode}`;
+
+  speechPart.append(motivationalSpeech);
+  wallPaper.append(speechPart);
+  container.append(wallPaper);
+
+  return container;
+}
+
+class Paper {
+  constructor(
+    text,
+    colorCode,
+    paperImgUrl,
+    verticalPosition,
+    horizontalPosition
+  ) {
+    this.text = text;
+    this.colorCode = colorCode;
+    this.paperImgUrl = paperImgUrl;
+    this.verticalPosition = this.verticalTable[verticalPosition];
+    this.horizontalPosition = this.horizontalTable[horizontalPosition];
+  }
+
+  verticalTable = {
+    top: "align-items-start",
+    center: "align-items-center",
+    bottom: "align-items-end",
+  };
+
+  horizontalTable = {
+    left: "justify-content-start",
+    center: "justify-content-center",
+    right: "justify-content-end",
+  };
+}
+
+let speech1 = new Paper(
+  "Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away. - Antoine de Saint",
+  "1B4F72",
+  "https://cdn.pixabay.com/photo/2020/06/12/03/06/magnifying-glass-5288877__340.jpg",
+  "top",
+  "right"
+);
+
+let speech2 = new Paper(
+  "The scientist discovers a new type of material or energy and the engineer discovers a new use for it. - Gordon Lindsay Glegg",
+  "007bff",
+  "https://cdn.pixabay.com/photo/2018/02/23/04/38/laptop-3174729_1280.jpg",
+  "center",
+  "left"
+);
+
+let speech3 = new Paper(
+  "Scientists study the world as it is, engineers create the world that never has been. - Theodore von Karman",
+  "ecf0f1",
+  "https://cdn.pixabay.com/photo/2017/05/10/19/29/robot-2301646_1280.jpg",
+  "center",
+  "center"
+);
+
+const domObj = document.getElementById("target");
+
+domObj.append(motivationalSpeechWallpaper(speech1));
+domObj.append(motivationalSpeechWallpaper(speech2));
+domObj.append(motivationalSpeechWallpaper(speech3));
+```
