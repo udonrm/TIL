@@ -48,3 +48,93 @@ document.getElementById("targetBtn").addEventListener("click", function () {
   </button>
 </div>
 ```
+
+## DOM イベントとリスナー
+
+```js
+EventTarget.addEventListener(eventType, callback);
+//ターゲットのオブジェクトにイベントリスナーを登録する
+
+EventTarget.removeEventListener(eventType, callback);
+// eventType、およびコールバック関数の参照に基づいて、このオブジェクトからイベントリスナーを削除します。
+
+EventTarget.dispatchEvent(eventObject);
+// 任意のイベントを作成し、dispatchEvent()メソッドを使って、対象となる要素にイベントを発生させることができます。
+// Eventオブジェクトには文字列であるeventTypeが含まれてます。
+```
+
+---
+
+```html
+<div>
+    <p id="target-p">Incoming Event</p>
+    <h1 id="target-h">The second Event</p>
+</div>
+```
+
+```js
+let targetElement = document.getElementById("target-p");
+
+//新しいイベントオブジェクトの作成
+const customEvent = new Event("myUniqueEvent");
+console.log(customEvent);
+
+//イベントが発火した時に実行する関数
+function randomFunction() {
+  console.log("The event just ran!!");
+}
+
+//targetElementにイベントリスナーを追加して関数の参照を渡す
+//イベントがトリガーされたら渡されたコーリバックを実行する
+targetElement.addEventListener("myUniqueEvent", randomFunction);
+
+//対象となる要素にイベントを発生させる
+targetElement.dispatchEvent(customEvent);
+
+let hElement = document.getElementById("target-h");
+
+hElement.addEventListener("echo", function () {
+  for (let i = 1; i <= 10; i++) {
+    console.log("Hello World");
+  }
+});
+
+hElement.dispatchEvent(new Event("echo"));
+```
+
+---
+
+```html
+<div>
+  <p id="target-p">Incoming Event</p>
+</div>
+```
+
+```js
+let targetElement = document.getElementById("target-p");
+const customEvent = new Event("myUniqueEvent");
+
+function randomFunction(event) {
+  console.log("The event just ran!!!");
+
+  //イベントが発生した要素
+  console.log(event.target);
+
+  //現在のドキュメントの生成からイベントが作成された時点までの時間
+  console.log(event.timeStamp);
+
+  //イベントタイプ
+  console.log(event.type);
+
+  //eventのデータ型
+  console.log(typeof event);
+}
+
+targetElement.addEventListener("myUniqueEvent", randomFunction);
+
+targetElement.dispatchEvent(customEvent);
+
+targetElement.addEventListener("click", function (e) {
+  console.log(e.timeStamp);
+});
+```
