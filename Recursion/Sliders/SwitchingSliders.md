@@ -285,6 +285,7 @@ function applyOperation(operator1, operator2, operator) {
   operator1 = parseInt(operator1);
   operator2 = parseInt(operator2);
 
+  //returnを返すときはbreakはいらない
   switch (operator) {
     case "+":
       return operator1 + operator2;
@@ -323,4 +324,46 @@ document
   .addEventListener("click", function () {
     answer.value = applyOperation(op1.value, op2.value, "/");
   });
+```
+
+## querySelectorAll
+
+```html
+<div id="outer-div">
+  <p>Hello World</p>
+  <p class="small-text">P1 with class "small-text"</p>
+  <p class="small-text">P2 with class "small-text"</p>
+  <p class="small-text">P3 with class "small-text"</p>
+  <p class="small-text">P4 with class "small-text"</p>
+  <div id="inner-div">
+    <p></p>
+  </div>
+</div>
+```
+
+```js
+let outer = document.getElementById("outer-div");
+
+//outer内でsmall-textクラスを持つ全ての要素を探す
+let smallTextOuter = outer.querySelectorAll(".small-text");
+
+// そのいくつかを出力します。
+console.log(smallTextOuter[0]);
+console.log(smallTextOuter.item(1));
+console.log(smallTextOuter[2]);
+
+//サイズの取得
+console.log(smallTextOuter.length);
+
+//全てを出力
+console.log(smallTextOuter);
+
+let innerDiv = document.getElementById("inner-div");
+let innerP = innerDiv.querySelectorAll(".inner-p");
+
+console.log("working with the inner..");
+console.log(innerP.item(0));
+
+let outerP = innerDiv.querySelectorAll("#outer-div");
+console.log(outerP.length);
 ```
