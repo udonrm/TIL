@@ -367,3 +367,467 @@ console.log(innerP.item(0));
 let outerP = innerDiv.querySelectorAll("#outer-div");
 console.log(outerP.length);
 ```
+
+---
+
+```html
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="col-6 row justify-content-end mb-2">
+    <label for="operator1">Operand 1 - </label>
+    <input type="text" id="operator1" value="2" />
+
+    <label for="operator2">Operand 2 -</label>
+    <input type="text" id="operator2" value="6" />
+
+    <button
+      class="ml-1"
+      onclick="alert(`Op1: ` + document.getElementById('operator1').value + `, Op2: ` + document.getElementById('operator2').value)"
+    >
+      Test Input
+    </button>
+  </div>
+
+  <div class="col-6 row justify-content-end">
+    <label for="answer">Total</label>
+    <input type="text" id="answer" disabled />
+    <div class="ml-1">
+      <button id="plusOperator" class="operator-btn">+</button>
+      <button id="minusOperator" class="operator-btn">-</button>
+      <button id="timesOperator" class="operator-btn">*</button>
+      <button id="divideOperator" class="operator-btn">/</button>
+    </div>
+  </div>
+</div>
+```
+
+```js
+function applyOperation(op1, op2, operator) {
+  op1 = parseInt(op1);
+  op2 = parseInt(op2);
+
+  if (operator === "+") return op1 + op2;
+  if (operator === "-") return op1 - op2;
+  if (operator === "*") return op1 * op2;
+  if (operator === "/") return op1 / op2;
+
+  return NaN;
+}
+
+const op1 = document.getElementById("operator1");
+const op2 = document.getElementById("operator2");
+const answer = document.getElementById("answer");
+
+// querySelectorAllメソッドとは、指定したセレクタに一致するすべてのHTML要素(NodeList)を取得するメソッドです。今回の場合、operator-btnというクラスを持っている要素が返されます。
+// 返された値は、HTMLCollectionと呼ばれるノードのリストです。ノードについては上級コースで学習します。
+const operatorButtons = document.querySelectorAll(".operator-btn");
+
+// コンソールで確認してみましょう。
+console.log(operatorButtons);
+console.log(operatorButtons[0]);
+console.log(operatorButtons[3]);
+```
+
+---
+
+```html
+<!-- 
+    問題
+    querySelectorAllメソッドでbuttonをNode Listとして取得し、コンソールに出力してみましょう。
+ -->
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="col-6 row justify-content-center mb-2">
+    <label class="col-12 text-center" for="op1">Operand 1</label>
+    <input class="col-12" type="text" id="op1" value="2" />
+
+    <label class="mt-3 col-12 text-center" for="op2">Operand 2</label>
+    <input class="col-12" type="text" id="op2" value="6" />
+
+    <button
+      type="button"
+      class="btn btn-secondary mt-3"
+      onclick="alert(`Op1: ` + document.getElementById(`op1`).value + `, Op2: ` + document.getElementById(`op2`).value)"
+    >
+      Test Input
+    </button>
+  </div>
+
+  <div class="col-6 row">
+    <label class="col-12" for="total"></label>
+    <input class="col-12" type="text" id="total" disabled />
+    <div class="mt-2">
+      <button id="plusOperator" class="btn btn-primary op-btn">+</button>
+      <button id="minusOperator" class="btn btn-primary op-btn">-</button>
+      <button id="multiplyOperator" class="btn btn-primary op-btn">*</button>
+      <button id="devideOperator" class="btn btn-primary op-btn">/</button>
+    </div>
+  </div>
+</div>
+```
+
+```js
+function applyOperation(op1, op2, operator) {
+  op1 = parseInt(op1);
+  op2 = parseInt(op2);
+
+  if (operator === "+") return op1 + op2;
+  if (operator === "-") return op1 - op2;
+  if (operator === "*") return op1 * op2;
+  if (operator === "/") return op1 / op2;
+
+  return NaN;
+}
+
+const op1 = document.getElementById("op1");
+const op2 = document.getElementById("op2");
+const total = document.getElementById("total");
+
+// ここからJavaScriptを記述してください。
+const operatorButtons = document.querySelectorAll(".btn");
+
+console.log(operatorButtons);
+```
+
+---
+
+```html
+<!-- 
+    ToDo
+    querySelectorAllメソッドはノードリストを返すと学習しました。では、for文を使ってそれぞれの要素がクリックされた時に、applyOperationが実行される、addEventListenerを実装してください。 
+-->
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="col-6 row justify-content-end mb-2">
+    <label for="operator1">Operand 1 - </label>
+    <input type="text" id="operator1" value="2" />
+
+    <label for="operator2">Operand 2 -</label>
+    <input type="text" id="operator2" value="6" />
+
+    <button
+      class="ml-1"
+      onclick="alert(`Op1: ` + document.getElementById('operator1').value + `, Op2: ` + document.getElementById('operator2').value)"
+    >
+      Test Input
+    </button>
+  </div>
+
+  <div class="col-6 row justify-content-end">
+    <label for="answer">Total</label>
+    <input type="text" id="answer" disabled />
+    <div class="ml-1">
+      <button id="plusOperator" class="operator-btn">+</button>
+      <button id="minusOperator" class="operator-btn">-</button>
+      <button id="timesOperator" class="operator-btn">*</button>
+      <button id="divideOperator" class="operator-btn">/</button>
+    </div>
+  </div>
+</div>
+```
+
+```js
+function applyOperation(op1, op2, operator) {
+  op1 = parseInt(op1);
+  op2 = parseInt(op2);
+
+  if (operator === "+") return op1 + op2;
+  if (operator === "-") return op1 - op2;
+  if (operator === "*") return op1 * op2;
+  if (operator === "/") return op1 / op2;
+
+  return NaN;
+}
+
+const op1 = document.getElementById("operator1");
+const op2 = document.getElementById("operator2");
+const answer = document.getElementById("answer");
+
+const operatorButtons = document.querySelectorAll(".operator-btn");
+
+// ここからJavaScriptを記述してください。
+// for文を使って、各ボタンがクリックされた時に、applyOperationが実行されるように処理を行ってください。
+// 要素.innerHTMLで要素の中身を取得することができるので、演算子の取得に活用してください。
+
+for (let i = 0; i < operatorButtons.length; i++) {
+  let opElement = operatorButtons[i];
+  opElement.addEventListener("click", function () {
+    answer.value = applyOperation(op1.value, op2.value, opElement.innerHTML);
+  });
+}
+```
+
+## querySelectorAll(上級)
+
+```html
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="col-6 row justify-content-end mb-2">
+    <label for="operator1">Operand 1 - </label>
+    <input type="text" id="operator1" value="2" />
+
+    <label for="operator2">Operand 2 -</label>
+    <input type="text" id="operator2" value="6" />
+
+    <button
+      class="ml-1"
+      onclick="alert(`Op1: ` + document.getElementById('operator1').value + `, Op2: ` + document.getElementById('operator2').value)"
+    >
+      Test Input
+    </button>
+  </div>
+
+  <div class="col-6 row justify-content-end">
+    <label for="answer">Total</label>
+    <input type="text" id="answer" disabled />
+    <div class="ml-1">
+      <button id="plusOperator" class="operator-btn">+</button>
+      <button id="minusOperator" class="operator-btn">-</button>
+      <button id="timesOperator" class="operator-btn">*</button>
+      <button id="divideOperator" class="operator-btn">/</button>
+    </div>
+  </div>
+</div>
+```
+
+```js
+function applyOperation(op1, op2, operator) {
+  op1 = parseInt(op1);
+  op2 = parseInt(op2);
+
+  if (operator === "+") return op1 + op2;
+  if (operator === "-") return op1 - op2;
+  if (operator === "*") return op1 * op2;
+  if (operator === "/") return op1 / op2;
+
+  return NaN;
+}
+
+const op1 = document.getElementById("operator1");
+const op2 = document.getElementById("operator2");
+const answer = document.getElementById("answer");
+
+const operatorButtons = document.querySelectorAll(".operator-btn");
+
+// 関数メソッド（mapやforEachなど）を使ってリストの反復処理を行い、ラムダ関数を適用します。これらの概念については、上級コースで学びます。
+operatorButtons.forEach((opElement) =>
+  opElement.addEventListener("click", function () {
+    answer.value = applyOperation(op1.value, op2.value, opElement.innerHTML);
+  })
+);
+```
+
+## classList
+
+```html
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="box bg-primary d-block" id="pBlock"></div>
+  <div class="box bg-secondary d-block"></div>
+
+  <!-- onclick属性。要素がクリックされた時にステートメントが実行されます。 -->
+  <button
+    class="btn btn-primary mt-2"
+    onclick="displayNone(document.getElementById(`pBlock`));"
+  >
+    Display Toggle
+  </button>
+</div>
+```
+
+```css
+.box {
+  height: 100px;
+  width: 100px;
+}
+```
+
+```js
+function display(ele) {
+  ele.classList.remove("d-block");
+  ele.classList.add("d-none");
+}
+```
+
+---
+
+```html
+<!-- 
+    ToDo:
+    ボタンがクリックされると、赤いboxを消す関数を作成し、ブラウザから赤いboxを消してください。
+-->
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="box bg-danger d-block" id="pBlock"></div>
+  <div class="box bg-success d-block"></div>
+
+  <button
+    class="btn btn-primary mt-2 "
+    onclick="displayNone(document.getElementById(`pBlock`));"
+  >
+    Display None
+  </button>
+</div>
+```
+
+```css
+.box {
+  height: 100px;
+  width: 100px;
+}
+```
+
+```js
+function displayNone(ele) {
+  ele.classList.remove("d-block");
+  ele.classList.add("d-none");
+}
+```
+
+## classList(2)
+
+```html
+<!-- ToDo:
+     onclick属性を使って、ボタンがクリックされると、青の箱が消え、グレーの箱が出現する処理を作ってみましょう。 
+     d-noneを取り除き、d-blockが付与するdisplayBlockという関数を作成してください。
+-->
+
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="box bg-primary d-block" id="pBlock"></div>
+  <div class="box bg-secondary d-none" id="sBlock"></div>
+
+  <button
+    class="btn btn-primary mt-2"
+    onclick="displayNone(document.getElementById(`pBlock`)); displayBlock(document.getElementById(`sBlock`))"
+  >
+    Display Toggle
+  </button>
+</div>
+```
+
+```css
+.box {
+  height: 100px;
+  width: 100px;
+}
+```
+
+```js
+function displayNone(ele) {
+  ele.classList.remove("d-block");
+  ele.classList.add("d-none");
+}
+
+function displayBlock(ele) {
+  ele.classList.remove("d-none");
+  ele.classList.add("d-block");
+}
+```
+
+## classList(3)
+
+```html
+<!-- ToDO:
+     ボタンをクリックする度に青色のboxとグレーのboxが非表示 / 表示を繰り返す挙動を作成してください。
+     要素のクラスの状態によって、d-noneとd-blockを入れ替える、toggleDisplayという関数を作成してください。
+-->
+
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="box bg-primary d-block" id="pBlock"></div>
+  <div class="box bg-secondary d-none" id="sBlock"></div>
+
+  <button
+    class="btn btn-primary mt-2"
+    onclick="toggleDisplay(document.getElementById(`pBlock`), document.getElementById(`sBlock`))"
+  >
+    Display Toggle
+  </button>
+</div>
+```
+
+```js
+function displayNone(ele) {
+  ele.classList.remove("d-block");
+  ele.classList.add("d-none");
+}
+
+function displayBlock(ele) {
+  ele.classList.remove("d-none");
+  ele.classList.add("d-block");
+}
+
+// ここからJavaScriptを記述してください。
+// 入力ele1、ele2
+// もしele1がd-blockを持っていたら、上で記述されている関数を使ってele1をd-noneし、ele2をd-blockしてください。
+// それ以外のケースでは、反対の処理を行ってください。
+
+// classList.containsはクラスが含まれているか確認します。ブール値を返します。
+
+function toggleDisplay(ele1, ele2) {
+  if (ele1.classList.contains("d-block")) {
+    displayNone(ele1);
+    displayNone(ele2);
+  } else {
+    displayNone(ele2);
+    displayNone(ele1);
+  }
+}
+```

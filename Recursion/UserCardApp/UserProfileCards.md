@@ -1249,4 +1249,5 @@ domObj.append(motivationalSpeechWallpaper(speech3));
     helperFunction.generateCategoryElements(emotions);
     helperFunction.generateOnomatopoeiaElements(emotions);
 ```
+
 ````
