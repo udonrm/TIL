@@ -924,10 +924,16 @@ employees.map((employee) => profileDiv.append(createEmployeeCard(employee)));
 ```
 
 ```js
-function motivationalSpeechWallpaper(paperObject) {
-  let container = document.createElement("div");
-  container.classList.add("container", "d-flex", "justify-content-center");
+function createMotivationalSpeech(text, color) {
+  let motivationalSpeech = document.createElement("h3");
+  motivationalSpeech.classList.add("paperText");
+  motivationalSpeech.innerHTML = text;
+  motivationalSpeech.style.color = `#${color}`;
 
+  return motivationalSpeech;
+}
+
+function createWallpaper(paperObject) {
   let wallPaper = document.createElement("div");
   wallPaper.classList.add(
     "vh-75",
@@ -937,20 +943,28 @@ function motivationalSpeechWallpaper(paperObject) {
     "col-md-8",
     "col-12",
     "d-flex",
-    "imgBackground"
+    "imgBackground",
+    paperObject.horizontalPosition,
+    paperObject.verticalPosition
   );
   wallPaper.style.backgroundImage = `url('${paperObject.paperImgUrl}')`;
 
-  wallPaper.classList.add(paperObject.horizontalPosition);
-  wallPaper.classList.add(paperObject.verticalPosition);
+  return wallPaper;
+}
+
+function motivationalSpeechWallpaper(paperObject) {
+  let container = document.createElement("div");
+  container.classList.add("container", "d-flex", "justify-content-center");
+
+  let wallPaper = createWallpaper(paperObject);
 
   let speechPart = document.createElement("div");
   speechPart.classList.add("col-8");
 
-  let motivationalSpeech = document.createElement("h3");
-  motivationalSpeech.classList.add("paperText");
-  motivationalSpeech.innerHTML = paperObject.text;
-  motivationalSpeech.style.color = `#${paperObject.colorCode}`;
+  let motivationalSpeech = createMotivationalSpeech(
+    paperObject.text,
+    paperObject.colorCode
+  );
 
   speechPart.append(motivationalSpeech);
   wallPaper.append(speechPart);
@@ -1234,4 +1248,5 @@ domObj.append(motivationalSpeechWallpaper(speech3));
 
     helperFunction.generateCategoryElements(emotions);
     helperFunction.generateOnomatopoeiaElements(emotions);
+```
 ````
