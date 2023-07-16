@@ -831,3 +831,101 @@ function toggleDisplay(ele1, ele2) {
   }
 }
 ```
+
+## keydown
+
+```html
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="box bg-primary d-block" id="pBlock"></div>
+  <p>press up and down</p>
+
+  <div>
+    <button class="btn">+</button>
+    <button class="btn">-</button>
+  </div>
+</div>
+```
+
+```js
+let body = document.getElementsByTagName("body").item(0);
+
+body.addEventListener("keydown", function (event) {
+  console.log(event.key);
+  console.log(event.code);
+});
+```
+
+---
+
+```html
+<!-- 
+問題
+キーボードを押して、そのキーをコンソールに出力させる処理を作成してください。 
+-->
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="box bg-primary d-block" id="pBlock"></div>
+  <p>press up and down</p>
+
+  <div>
+    <button class="btn">+</button>
+    <button class="btn">-</button>
+  </div>
+</div>
+```
+
+```js
+let body = document.getElementsByTagName("body").item(0);
+
+body.addEventListener("keydown", function (event) {
+  console.log(event.key);
+});
+```
+
+---
+
+```html
+<!-- 
+    ToDo: 
+    キーボードに「u」と入力されたら箱を+10px、「d」と入力されたら箱を-10pxする処理を実装してください。
+    addEventListenerのkeydownを使って、「箱の現在の高さを把握し、押されたキーボードによって箱のstyle属性のheightプロパティを変更する」という関数を実行してください。 
+-->
+
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="box bg-primary d-block" id="pBlock"></div>
+  <p>press up and down</p>
+
+  <div>
+    <button class="btn">+</button>
+    <button class="btn">-</button>
+  </div>
+</div>
+```
+
+```js
+// HTMLElement.offsetHeightで現在の要素の高さを取得することができます。
+// HTMLElement.style.heightは要素のstyle属性のheightプロパティの値を取得、もしくは、設定することができます。
+```
