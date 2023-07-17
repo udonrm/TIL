@@ -928,4 +928,23 @@ body.addEventListener("keydown", function (event) {
 ```js
 // HTMLElement.offsetHeightで現在の要素の高さを取得することができます。
 // HTMLElement.style.heightは要素のstyle属性のheightプロパティの値を取得、もしくは、設定することができます。
+
+let body = document.getElementsByTagName("body").item(0);
+
+body.addEventListener("keydown", function (event) {
+  console.log(event.key);
+
+  const pBlock = document.getElementById("pBlock");
+  const pxIncrease = 10;
+
+  let height = pBlock.offsetHeight;
+
+  if (event.key == "u") {
+    console.log(pBlock.style.height);
+    pBlock.style.height = height + pxIncrease + "px";
+  } else if ((event.key = "d")) {
+    console.log(pBlock.style.height);
+    pBlock.style.height = height - pxIncrease + "px";
+  }
+});
 ```
