@@ -939,12 +939,198 @@ body.addEventListener("keydown", function (event) {
 
   let height = pBlock.offsetHeight;
 
-  if (event.key == "u") {
+  if (event.key === "u") {
     console.log(pBlock.style.height);
     pBlock.style.height = height + pxIncrease + "px";
-  } else if ((event.key = "d")) {
+  } else if (event.key === "d") {
     console.log(pBlock.style.height);
     pBlock.style.height = height - pxIncrease + "px";
   }
 });
+```
+
+---
+
+```html
+<!-- 
+    ToDo
+    「+」が押された時に、箱の高さを+10pxするincreasePxという関数を、「-」が押された時に箱の高さを-10pxするdecreasePxという関数を実行してください。要素の現在の高さを取得するhtmlElement.offsetHeightや、style属性のheightプロパティにアクセスするhtmlElement.style.heightを使ってください。 
+-->
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="box bg-primary d-block" id="pBlock"></div>
+  <p>press up and down</p>
+
+  <div>
+    <button onclick="increasePx()" class="btn">+</button>
+    <button onclick="decreasePx()" class="btn">-</button>
+  </div>
+</div>
+```
+
+```js
+const pBlock = document.getElementById("pBlock");
+const pxIncrease = 10;
+
+function increasePx() {
+  let height = pBlock.offsetHeight;
+  pBlock.style.height = height + pxIncrease + "px";
+}
+
+function decreasePx() {
+  let height = pBlock.offsetHeight;
+  pBlock.style.height = height - pxIncrease + "px";
+}
+```
+
+## keydown(上級)
+
+```html
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="box bg-primary d-block" id="pBlock"></div>
+  <p>press up and down</p>
+
+  <div>
+    <!-- ***上級者向け*** イベントオブジェクトのインスタンスを取得するdispatchEvent関数を使用してイベントをトリガーすることができます。DispatchEventは他にもたくさんのイベントオブジェクトを取り込むことができるので、興味があればJSのドキュメントを参照してください。 -->
+    <!-- 要素がクリックされた時、body要素に対してKeyboardEventを実行。https://ja.javascript.info/dispatch-events
+    KeyboardEvent("種類", "初期化")。キーが押された時、keyをArrowUpに設定します。https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/KeyboardEvent -->
+    <button
+      class="btn"
+      onclick="document.getElementsByTagName(`body`).item(0).dispatchEvent(new KeyboardEvent('keydown',{'key':'ArrowUp'}))"
+    >
+      +
+    </button>
+    <button
+      class="btn"
+      onclick="document.getElementsByTagName(`body`).item(0).dispatchEvent(new KeyboardEvent('keydown',{'key':'ArrowDown'}))"
+    >
+      -
+    </button>
+  </div>
+</div>
+```
+
+```js
+let body = document.getElementsByTagName("body").item(0);
+
+body.addEventListener("keydown", function (event) {
+  console.log(event.key);
+
+  const pBlock = document.getElementById("pBlock");
+  const pxIncrease = 10;
+  let height = pBlock.offsetHeight;
+
+  if (event.key === "ArrowUp") {
+    pBlock.style.height = height + pxIncrease + "px";
+  } else if (event.key === "ArrowDown") {
+    pBlock.style.height = height - pxIncrease + "px";
+  }
+});
+```
+
+## mouseover
+
+```html
+<!-- 
+    ToDo: 
+    checkボックスがクリックされると、<input id="passwordClick" type="password">のtype属性がtextに変更する、passwordToggleという関数を作成し、処理を実装してください。type属性にはhtmlElement.typeでアクセスすることができます。
+-->
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="col-12">
+    <label for="passwordClick">Password</label>
+    <input id="passwordClick" type="password" />
+  </div>
+  <div class="col-12">
+    <label for="passwordClickCheck">Show/Hide Password</label>
+    <input type="checkbox" id="passwordClickCheck" onclick="passwordToggle()" />
+  </div>
+  <div class="col-12">
+    <button>Lock Password</button>
+  </div>
+  <h3 class="mt-5">Password</h3>
+  <div id="lockedPassDiv" class="col-12"></div>
+</div>
+```
+
+```js
+function passwordToggle(){
+  const pass = document.getElementById("passwordClick");
+
+  pass.type = pass.type === "password" ? "text" : "password;
+}
+```
+
+## mouseover(2)
+
+```html
+<!-- 
+    ToDo: 
+    inputタグに何も入力できないようにロックをかけ、さらにid属性lockedPassDivの要素にinputタグに入力されたパスワードをpタグで表示する、lockPassという関数を作成し、処理を実装してください。 
+-->
+
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="col-12">
+    <label for="passwordClick">Password</label>
+    <input id="passwordClick" type="password" />
+  </div>
+  <div class="col-12">
+    <label for="passwordClickCheck">Show/Hide Password</label>
+    <input type="checkbox" id="passwordClickCheck" onclick="passwordToggle()" />
+  </div>
+  <div class="col-12">
+    <button onclick="lockPass()">Lock Password</button>
+  </div>
+  <h3 class="mt-5">Password</h3>
+  <div id="lockedPassDiv" class="col-12"></div>
+</div>
+```
+
+```js
+function passwordToggle() {
+  const pass = document.getElementById("passwordClick");
+  pass.type = pass.type === "password" ? "text" : "password";
+}
+
+function lockPass() {
+  const pass = document.getElementById("passwordClick");
+  const target = document.getElementById("lockedPassDiv");
+
+  pass.disabled = true;
+
+  const p = document.createElement("p");
+  p.innerHTML = pass.value;
+
+  target.append(p);
+}
 ```
