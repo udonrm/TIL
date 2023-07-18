@@ -1454,3 +1454,20 @@ buttonBlock.append(leftButton);
 buttonBlock.append(rightButton);
 target.append(buttonBlock);
 ```
+
+## カエルジャンプ
+
+```js
+function frogPosition(leaves, jumps, start) {
+  let newJumps = ((jumps % leaves) + leaves) % leaves;
+  let newPosition = ((start - 1 + newJumps) % leaves) + 1;
+  return newPosition;
+}
+
+function frogPosition(leaves, jumps, start) {
+  let position = (jumps + start) % leaves;
+
+  if (position <= 0) return position + leaves;
+  else return position;
+}
+```
