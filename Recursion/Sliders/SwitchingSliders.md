@@ -1134,3 +1134,323 @@ function lockPass() {
   target.append(p);
 }
 ```
+
+## Q パスワード非表示
+
+```js
+function passwordStars(password) {
+  let output = "";
+  for (let i = 0; i < password.length; i++) {
+    output += "*";
+  }
+  return output;
+}
+```
+
+## mouseover(3)
+
+```html
+<!-- 
+    ToDo: 
+    入力された文字列を全て*に変換する、passwordStarsという関数を作成してください。
+    ユーザーがマウスホバーした時にパスワードが見え、それ以外の時に文字列を*によって隠すイベントリスナーを実行してください。
+    またLockPasswordがクリックされるたびに要素が追加されていかないように、appendされる前にtargetの中身を空にしてください
+-->
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-2">
+  <div class="col-12">
+    <label for="passwordClick">Password</label>
+    <input id="passwordClick" type="password" />
+  </div>
+  <div class="col-12">
+    <label for="passwordClickCheck">Show/Hide Password</label>
+    <input type="checkbox" id="passwordClickCheck" onclick="passwordToggle()" />
+  </div>
+  <div class="col-12">
+    <button onclick="lockPass()">Lock Password</button>
+  </div>
+  <h3 class="mt-5">Password</h3>
+  <div id="lockedPassDiv" class="col-12"></div>
+</div>
+```
+
+```js
+function passwordToggle() {
+  const pass = document.getElementById("passwordClick");
+  pass.type = pass.type === "password" ? "text" : "password";
+}
+
+// 入力された文字列を全部星に変換する、passwordStarsという関数を作成してください。
+// ここからJavaScriptを記述してください。
+function passwordStars(password) {
+  let output = "";
+  for (let i = 0; i < password.length; i++) {
+    output += "*";
+  }
+  return output;
+}
+
+function lockPass() {
+  const pass = document.getElementById(`passwordClick`);
+  const target = document.getElementById("lockedPassDiv");
+
+  if (pass.value === "") return;
+
+  pass.disabled = true;
+
+  const p = document.createElement("p");
+  p.innerHTML = pass.value;
+
+  // ユーザーがマウスホバーした時に、パスワードが見えるようにイベントリスナーを設定してください。
+  // ユーザーがマウスホバーしていない時に、パスワードが*で表示されるようにイベントリスナーを設定してください。
+  // マウスホバーの時は、addEventListener("mouseover", function())、それ以外の時は、addEventListener("mouseout", function())で実装できます。
+  // ここからJavaScriptを記述してください。
+  p.addEventListener("mouseover", function () {
+    p.innerHTML = pass.value;
+  });
+
+  //デフォルトの状態が星になるようにする
+  p.addEventListener("mouseout", function () {
+    p.innerHTML = passwordStars(pass.value);
+  });
+
+  // Lock Passwordを何回押しても何度も要素が表示されないように、appendをする前にtargetの中身を空にしてください。
+  target.innerHTML = "";
+  target.append(p);
+}
+```
+
+## getAttribute
+
+```html
+<div>
+  <!-- data-***属性は、要素に任意のキーと値を付けるための属性です。キー名は、data-の後に続けます。例えば、下記は、secretというキーと、その値を付けたものです。 -->
+  <div id="dataSecret" data-secret="hello world"></div>
+</div>
+```
+
+```js
+//データをタグに紐付けしてJS内でアクセス
+console.log(document.getElementById("dataSecret").getAttribute("data-secret"));
+```
+
+## Slider(2)
+
+```html
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-5">
+  <!-- ここからBootstrapを記述してください。 -->
+  <div class="col-12">
+    <div class="box bg-primayr"></div>
+    <div class="box bg-secondary"></div>
+    <div class="box bg-success"></div>
+    <div class="box bg-warning"></div>
+    <div class="box bg-danger"></div>
+  </div>
+</div>
+```
+
+```css
+.box {
+  height: 50vh;
+  padding: 0 !important;
+}
+```
+
+## Slider(3)
+
+- https://zero-plus.io/media/css-animation-keyframes/
+
+```html
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="m-5">
+  <div class="col-12">
+    <div class="box bg-primary deplete-animation"></div>
+    <div class="box bg-secondary expand-animation"></div>
+    <div class="box bg-success"></div>
+    <div class="box bg-warning"></div>
+    <div class="box bg-danger"></div>
+  </div>
+</div>
+```
+
+```css
+.box {
+  height: 50vh;
+  padding: 0 !important;
+  transition: all 2s linear;
+}
+
+.deplete-animation {
+  animation: deplete 1s linear forwards;
+}
+
+.expand-animation {
+  animation: deplete 1s linear reverse forwards;
+}
+
+@keyframes deplete {
+  0% {
+    width: 100%;
+    opacity: 1;
+  }
+  100% {
+    width: 0%;
+    opacity: 1;
+  }
+}
+```
+
+## Slider(4)
+
+```html
+<!-- 
+    ToDo:
+    全ての要素を非表示にしてください。
+    その後、querySelectorAllを用いて、5つの箱の要素をHTMLのノードのリストとして取得してください。
+    次にsliderShowというコンテナを作成し、mainコンテナとextraコンテナを配置してください。
+    最後にmainコンテナの中に1つ目の箱をappendしてみましょう。 
+-->
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div id="target" class="m-5">
+  <!-- 全ての要素を非表示にしてください。 -->
+  <div class="col-12 slider-data d-none">
+    <div class="box slider-item bg-primary"></div>
+    <div class="box slider-item bg-secondary"></div>
+    <div class="box slider-item bg-success"></div>
+    <div class="box slider-item bg-warning"></div>
+    <div class="box slider-item bg-danger"></div>
+  </div>
+</div>
+```
+
+```js
+// querySelectorAllを使って全ての箱の要素をリストとして取得し、コンソールに出力してください。
+// 1つ目の箱の要素をコンソールに出力してください。
+const target = document.getElementById("target");
+
+const sliderItems = document.querySelectorAll(
+  "#target .slider-data .slider-item"
+);
+console.log(sliderItems[0]);
+
+// <div class="col-12 d-flex flex-nowrap overflow-hidden"> -- sliderShow
+//     <div class="main full-width"> -- main
+//     </div>
+//     <div class="extra full-width"> -- extra
+//     </div>
+// </div>
+
+// 上のHTMLをcreateElementやclassListを用いて作成してください。
+// mainコンテナに一番最初の箱をappendし、sliderShowをid属性targetのdivに追加してください。
+let sliderShow = document.createElement("div");
+let main = document.createElement("div");
+let extra = document.createElement("div");
+
+sliderShow.classList.add("col-12", "d-flex", "flex-nowrap", "overflow-hidden");
+main.classList.add("main", "full-width");
+extra.classList.add("extra", "full-width");
+
+main.append(sliderItems[0]);
+
+sliderShow.append(main);
+sliderShow.append(extra);
+target.append(sliderShow);
+```
+
+## slider(5)
+
+```html
+<!-- 
+    ToDo: 
+    createElement、classList、innerHTML等を使って左右のボタンを作成してブラウザに表示してください。 
+-->
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div id="target" class="m-5">
+  <div class="col-12 slider-data d-none">
+    <div class="box slider-item bg-primary"></div>
+    <div class="box slider-item bg-secondary"></div>
+    <div class="box slider-item bg-success"></div>
+    <div class="box slider-item bg-warning"></div>
+    <div class="box slider-item bg-danger"></div>
+  </div>
+</div>
+```
+
+```js
+const target = document.getElementById("target");
+const sliderItems = document.querySelectorAll(
+  "#target .slider-data .slider-item"
+);
+
+let sliderShow = document.createElement("div");
+let main = document.createElement("div");
+let extra = document.createElement("div");
+
+sliderShow.classList.add("col-12", "d-flex", "flex-nowrap", "overflow-hidden");
+main.classList.add("main", "full-width");
+extra.classList.add("extra", "full-width");
+
+main.append(sliderItems[0]);
+
+sliderShow.append(main);
+sliderShow.append(extra);
+target.append(sliderShow);
+
+// <div class="offset-5 mt-2">
+//     <button class="btn btn-light"><</button>
+//     <button class="btn btn-light">></button>
+// </div>
+// createElement、classList、innerHTMLを使用してください。
+// ここからJavaScriptを記述してください。
+
+let buttonBlock = document.createElement("div");
+buttonBlock.classList.add("offset-5", "mt-2");
+
+let leftButton = document.createElement("button");
+leftButton.classList.add("btn", "btn-light");
+leftButton.innerHTML = "<";
+
+let rightButton = document.createElement("button");
+rightButton.classList.add("btn", "btn-light");
+rightButton.innerHTML = ">";
+
+buttonBlock.append(leftButton);
+buttonBlock.append(rightButton);
+target.append(buttonBlock);
+```
