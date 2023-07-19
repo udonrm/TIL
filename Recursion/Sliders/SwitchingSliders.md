@@ -1879,3 +1879,203 @@ rightBtn.addEventListener("click", function () {
   slideJump(1, "right");
 });
 ```
+
+## Vending Machine
+
+```html
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+</head>
+<div class="container-fluid">
+  <div class="row">
+    <div id="target" class="col-lg-6"></div>
+    <div
+      id="buttonContainer"
+      class="col-lg-6 d-flex flex-wrap align-items-center"
+    ></div>
+  </div>
+</div>
+```
+
+```css
+.half-width {
+  width: 50%;
+}
+```
+
+```js
+const target = document.getElementById("target");
+
+// 自動販売機の全体画面
+let main = document.createElement("div");
+main.classList.add("col-12", "d-flex", "flex-nowrap");
+
+//動物の画像表示画面
+let animalImg = document.createElement("div");
+animalImg.classList.add("animalImg", "half-width");
+
+//名前と値段、数字のボタンの画面
+let animalInfo = document.createElement("div");
+animalInfo.classList.add("animalInfo", "half-width");
+
+main.append(animalImg);
+main.append(animalInfo);
+target.append(main);
+
+class Animal {
+  constructor(name, price, imgUrl) {
+    this.name = name;
+    this.price = price;
+    this.imgUrl = imgUrl;
+  }
+
+  display() {
+    let image = document.createElement("img");
+    image.src = this.imgUrl;
+    image.alt = this.name;
+    animalImg.innerHTML = "";
+    animalImg.append(image);
+
+    let name = document.createElement("h2");
+    name.innerHTML = this.name;
+
+    let price = document.createElement("p");
+    price.innerHTML = "Price : $" + this.price;
+
+    animalInfo.innerHTML = "";
+    animalInfo.append(name);
+    animalInfo.append(price);
+  }
+}
+
+let buttonContainer = document.getElementById("buttonContainer");
+
+for (let i = 0; i < zoo.length; i++) {
+  let button = document.createElement("button");
+  button.classList.add("btn", "btn-primary", "m-2");
+  button.textContent = i + 1;
+  button.addEventListener("click", function () {
+    zoo[i].display();
+  });
+  buttonContainer.append(button);
+}
+animalInfo.append(buttonContainer);
+
+let zoo = [
+  new Animal(
+    "Tiger",
+    100,
+    "https://cdn.pixabay.com/photo/2015/12/18/13/46/tiger-1098607__340.jpg"
+  ),
+  new Animal(
+    "Elephant",
+    200,
+    "https://cdn.pixabay.com/photo/2016/11/14/04/45/elephant-1822636__480.jpg"
+  ),
+  new Animal(
+    "Parrot",
+    30,
+    "https://cdn.pixabay.com/photo/2018/09/22/17/05/parrot-3695678__340.jpg"
+  ),
+  new Animal(
+    "Lemurs",
+    15,
+    "https://cdn.pixabay.com/photo/2015/10/28/15/05/lemurs-1010643__340.jpg"
+  ),
+  new Animal(
+    "Ibis",
+    75,
+    "https://cdn.pixabay.com/photo/2018/11/11/16/51/ibis-3809147__340.jpg"
+  ),
+  new Animal(
+    "Panda",
+    90,
+    "https://cdn.pixabay.com/photo/2019/08/21/16/03/panda-4421395__340.jpg"
+  ),
+  new Animal(
+    "Zebra",
+    120,
+    "https://cdn.pixabay.com/photo/2020/10/13/10/20/zebra-5651454__480.jpg"
+  ),
+  new Animal(
+    "Rabbit",
+    25,
+    "https://cdn.pixabay.com/photo/2018/06/28/00/11/mara-mammal-3502921__340.jpg"
+  ),
+  new Animal(
+    "Giraffe",
+    150,
+    "https://cdn.pixabay.com/photo/2019/07/27/06/21/giraffe-4366005__340.jpg"
+  ),
+  new Animal(
+    "Raccoon",
+    45,
+    "https://cdn.pixabay.com/photo/2018/07/14/17/46/raccoon-3538081__340.jpg"
+  ),
+  new Animal(
+    "Frog",
+    5,
+    "https://cdn.pixabay.com/photo/2016/04/17/16/37/frog-1335022__340.jpg"
+  ),
+  new Animal(
+    "Iguana",
+    40,
+    "https://cdn.pixabay.com/photo/2017/02/05/11/43/iguana-2039719__340.jpg"
+  ),
+  new Animal(
+    "Adler",
+    55,
+    "https://cdn.pixabay.com/photo/2017/10/20/21/45/adler-2872995__340.jpg"
+  ),
+  new Animal(
+    "Wolf",
+    60,
+    "https://cdn.pixabay.com/photo/2019/09/17/14/24/wolf-4483675__340.jpg"
+  ),
+  new Animal(
+    "Crocodile",
+    250,
+    "https://cdn.pixabay.com/photo/2014/01/14/18/31/nile-crocodile-245013__340.jpg"
+  ),
+  new Animal(
+    "Ape",
+    20,
+    "https://cdn.pixabay.com/photo/2019/07/24/14/17/monkey-4360298__340.jpg"
+  ),
+  new Animal(
+    "Ostrich",
+    140,
+    "https://cdn.pixabay.com/photo/2019/09/25/15/58/ostrich-4504017__340.jpg"
+  ),
+  new Animal(
+    "Rhinoceros",
+    170,
+    "https://cdn.pixabay.com/photo/2019/09/04/09/48/rhinoceros-4451152__340.jpg"
+  ),
+  new Animal(
+    "Icebear",
+    210,
+    "https://cdn.pixabay.com/photo/2017/08/14/20/33/polar-bear-2641842__340.jpg"
+  ),
+  new Animal(
+    "Cheetah",
+    190,
+    "https://cdn.pixabay.com/photo/2018/06/14/22/22/cheetah-3475778__340.jpg"
+  ),
+  new Animal(
+    "Koala",
+    30,
+    "https://cdn.pixabay.com/photo/2013/01/14/12/21/koala-74908__340.jpg"
+  ),
+  new Animal(
+    "Penguin",
+    25,
+    "https://cdn.pixabay.com/photo/2016/09/29/16/40/king-penguin-1703294__340.jpg"
+  ),
+];
+```
