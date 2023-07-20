@@ -775,3 +775,256 @@ p {
   color: white;
 }
 ```
+
+## 名前空間の設定
+
+- https://www.sejuku.net/blog/65850
+
+```html
+<!-- 
+    ToDo: 今度何度も使う、initial-formとbankPageの要素の情報を名前空間configの中に保存し、コンソールで出力しましょう。 
+-->
+<head>
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+
+  <!-- fontawesome -->
+  <link
+    href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+    rel="stylesheet"
+  />
+</head>
+<!-- 1ページ目 -->
+<div
+  class="vh-100 bg-dark d-flex flex-column justify-content-center align-items-center"
+>
+  <div class="d-flex align-items-center col-md-7 col-10">
+    <div id="initial-form" class="bg-white col-12 text-center p-4">
+      <h2 class="pb-3">Please type your information below</h2>
+      <form class="form">
+        <div class="form-group">
+          <!-- input要素のrequired属性は、その入力項目が必須属性であることをブラウザに知らせることができます。HTML5では、required属性を設定するだけでJavaScriptによる入力チェックがなくてもエラーメッセージを表示させることが可能です。 -->
+          <input
+            type="email"
+            name="userEmail"
+            class="form-control"
+            placeholder="Email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="userFirstName"
+            class="form-control"
+            placeholder="First name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="userLastName"
+            class="form-control"
+            placeholder="Last name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="number"
+            class="form-control"
+            name="userFirstDeposit"
+            aria-describedby="emailHelp"
+            placeholder="Enter your first deposit"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <!-- チェックボックスをあらかじめチェックするにはchecked属性を使用します。 -->
+            <input
+              class="form-check-input"
+              type="radio"
+              name="userAccountType"
+              id="userAccountType1"
+              value="savings"
+              checked
+              required
+            />
+            <label class="form-check-label" for="userAccountType1">
+              Savings
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="userAccountType"
+              id="userAccountType2"
+              value="checkings"
+              required
+            />
+            <label class="form-check-label" for="userAccountType2">
+              Checkings
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary col-12">Submit</button>
+      </form>
+    </div>
+    <!-- 2ページ目の枠 -->
+    <div id="bankPage" class="bg-green col-12 text-center text-white"></div>
+  </div>
+</div>
+```
+
+```js
+// 名前空間configを作成して、メンバ変数にinitialFormとbankPageの要素情報を保存してください。
+// 名前空間がわからない方は、初級コンテンツ「クラスと名前空間」で復習しましょう。
+// 名前空間を通じて、initial-formとbankPageにアクセスし、コンソールに出力しましょう。
+// ここからJavaScriptを記述してください。
+
+class config{
+  initialForm: document.getElementById("initial-form"),
+  bankPage: document.getElementById("bankPage")
+}
+
+console.log(config.initialForm);
+console.log(config.bankPage);
+```
+
+## クラスの設定
+
+```js
+const config = {
+  initialForm: document.getElementById("initial-form"),
+  bankPage: document.getElementById("bankPage"),
+};
+
+// 個々のユーザーをオブジェクトとして管理するためにBankAccountクラスを作成してください。
+// firstName、lastName、email、type、moneyを入力として受け取って、メンバ変数を設定し、オブジェクトの初期値を決定してください。
+// メンバ変数: firstName、lastName、email、type、money、initialDeposit
+// getFullName()メソッドを作成してください。
+
+// 具体的にユーザーを入れて出力してみましょう。
+// "Elisa", "Jones", "elisa.jones@gmail.com", "checking", "30"
+// getFullName()メソッドにアクセスし、コンソールに出力してみましょう。
+
+class BankAccount {
+  constructor(firstName, lastName, email, type, money) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.type = type;
+    this.money = money;
+  }
+
+  getFullName() {
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+let user1 = new BankAccount(
+  "Elisa",
+  "Jones",
+  "elisa.jones@gmail.com",
+  "checking",
+  "30"
+);
+console.log(user1);
+console.log(user1.getFullName());
+```
+
+## ランダムな数字の作成
+
+```js
+// ランダムな数を生成するには、Math.random()を使用します。
+// Math.random()は0-1未満のランダムな数を返します。
+console.log(Math.random());
+
+// では、ここで0-3未満のランダムな数を生成してみましょう。
+console.log(Math.random() * 3);
+
+// 次に2-5未満のランダムな数を生成してみましょう。
+console.log(Math.random() * (5 - 2) + 2);
+
+// したがって、Math.random() * (max - min) + minでmin-max未満のランダムな数を生成することができます。
+
+// では、minとmaxを受け取って、min-max間のランダムな数を返す、getRandomIntegerという関数を作成してください。
+// getRandomInteger(4,10)を出力してください。
+// getRandomInteger(50,100)を出力してください。
+// floor関数を使って関数を書き換えて、整数のみ出力するようにしてください。
+
+function getRandomInteger(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+console.log(getRandomInteger(4, 10));
+console.log(getRandomInteger(50, 100));
+```
+
+---
+
+```js
+const config = {
+  initialForm: document.getElementById("initial-form"),
+  bankPage: document.getElementById("bankPage"),
+};
+
+// 口座番号を初期値として設定してください。
+class BankAccount {
+  constructor(firstName, lastName, email, type, money) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.type = type;
+    this.money = money;
+    this.initialDeposit = money;
+  }
+
+  getFullName() {
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+function getRandomInteger(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+let user1 = new BankAccount(
+  "Elisa",
+  "Jones",
+  "elisa.jones@gmail.com",
+  "checking",
+  getRandomInteger(1, 1000),
+  "30"
+);
+
+let user2 = new BankAccount(
+  "Jameson",
+  "Dorsey",
+  "jameson.dorsey@gmail.com",
+  "saving",
+  Math.random(1, 10 ** 8),
+  "90"
+);
+
+console.log(user1);
+console.log(user2);
+
+// minとmaxを受け取ってランダムな整数を生成するgetRandomIntegerという関数を作成してください。
+// 出力の数値は整数でなければいけません。
+
+// 具体的にユーザーを入れてコンソールに出力してみましょう。
+// "Elisa", "Jones", "elisa.jones@gmail.com", "checking", getRandomInteger(1,1000), "30"
+
+// Jamesonに対しては、1から10^8までのランダムな整数を設定してください。
+// "Jameson", "Dorsey", "jameson.dorsey@gmail.com", "saving", "90"
+// コンソールに出力してみましょう。
+```
