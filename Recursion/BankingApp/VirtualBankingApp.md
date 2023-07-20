@@ -2005,3 +2005,126 @@ function withdrawPage() {
   return container;
 }
 ```
+
+## 入力の確認
+
+```js
+function withdrawPage() {
+  let container = document.createElement("div");
+  container.classList.add("p-5");
+
+  let withdrawContainer = document.createElement("div");
+  container.append(withdrawContainer);
+
+  withdrawContainer.append(
+    billInputSelector("Please Enter The Withdrawal Amount")
+  );
+  withdrawContainer.append(backNextBtn("back", "next"));
+
+  // 各inputタグを取得するためにHTMLにbill-inputクラスを付与してください。
+  // 1つ目のinputに要素が入力されたら、その値をコンソールに出力する処理を作成してください。
+  // addEventListener("change", function)と処理を実装してください。
+  // changeイベントはinput, select, textarea要素において、ユーザーによる要素の値の変更が確定したときに発生します。
+  // 入力された数字をそのままコンソールに出力してください。
+  // ここからJavaScriptを記述してください。
+
+  let billInputs = withdrawContainer.querySelectorAll(".bill-input");
+
+  billInputs[0].addEventListener("change", function () {
+    console.log(billInputs[0].value);
+  });
+  return container;
+}
+```
+
+## 入力の表示
+
+```js
+function withdrawPage() {
+  let container = document.createElement("div");
+  container.classList.add("p-5");
+
+  let withdrawContainer = document.createElement("div");
+  container.append(withdrawContainer);
+
+  withdrawContainer.append(
+    billInputSelector("Please Enter The Withdrawal Amount")
+  );
+  withdrawContainer.append(backNextBtn("back", "next"));
+
+  let billInputs = withdrawContainer.querySelectorAll(".bill-input");
+
+  // それぞれの要素に入力があった時にtotalに表示してください。
+  // for文とaddEventListener、innerHTMLを組み合わせましょう。
+  // ここからJavaScriptを記述してください。
+  for (let i = 0; i < billInputs.length; i++) {
+    billInputs[i].addEventListener("change", function () {
+      document.getElementById("withdrawTotal").innerHTML = billInputs[i].value;
+    });
+  }
+  return container;
+}
+```
+
+## Q Bill Summation
+
+```js
+function billSummation(arr1, arr2) {
+  let multipliedNumber = 0;
+  for (let i = 0; i < arr1.length; i++) {
+    multipliedNumber += arr1[i] * arr2[i];
+  }
+  return multipliedNumber;
+}
+```
+
+## billSummation
+
+```js
+// data-billを持つ要素、文字列data-billを受け取り、合計金額を計算するbillSummationという関数を作成してください。
+// for文を使って合計金額を算出してください。
+// getAttributeメソッドとparseIntを組み合わせて、data-billの値をint型として取得し、入力された値と掛け合わせてください。
+// 例: 入力5, $100 --> 500
+function withdrawPage() {
+  let container = document.createElement("div");
+  container.classList.add("p-5");
+
+  let withdrawContainer = document.createElement("div");
+  container.append(withdrawContainer);
+
+  withdrawContainer.append(
+    billInputSelector("Please Enter The Withdrawal Amount")
+  );
+  withdrawContainer.append(backNextBtn("back", "next"));
+
+  let billInputs = withdrawContainer.querySelectorAll(".bill-input");
+
+  for (let i = 0; i < billInputs.length; i++) {
+    billInputs[i].addEventListener("change", function (event) {
+      // billSummationという関数の値を代入
+      // inputの値が変わる度に関数が実行されます。
+      document.getElementById("withdrawTotal").innerHTML = billSummation(
+        billInputs,
+        "data-bill"
+      ).toString();
+    });
+  }
+
+  return container;
+}
+
+function billSummation(inputElementNodeList, multiplierAttribute) {
+  let summation = 0;
+  for (let i = 0; i < inputElementNodeList.length; i++) {
+    //currEleはどの料金を選択しているかを表して、valueは選択した料金にかける数値(inputに入力される数)を表す
+    let currEle = inputElementNodeList[i];
+    let value = parseInt(currEle.value);
+
+    if (currEle.hasAttribute(multiplierAttribute))
+      value *= parseInt(currEle.getAttribute(multiplierAttribute));
+
+    if (value > 0) summation += value;
+  }
+  return summation;
+}
+```
