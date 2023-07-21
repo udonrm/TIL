@@ -2460,3 +2460,207 @@ function billDialog(title, inputElementNodeList, multiplierAttribute) {
   return container;
 }
 ```
+
+## 引き落とせる最大額の計算
+
+```js
+class BankAccount {
+  // クラス変数maxWithdrawPercentを0.2と設定してください。
+  maxWithdrawPercent = 0.2;
+
+  constructor(
+    firstName,
+    lastName,
+    email,
+    type,
+    accountNumber,
+    money,
+    maxWithdrawPercent
+  ) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.type = type;
+    this.accountNumber = accountNumber;
+    this.money = money;
+    this.initialDeposit = money;
+  }
+
+  getFullName() {
+    return this.firstName + " " + this.lastName;
+  }
+
+  calculateWithdrawAmount(amount) {
+    let maxWithdrawAmount = Math.floor(this.money * this.maxWithdrawPercent);
+    amount = amount > maxWithdrawAmount ? maxWithdrawAmount : amount;
+    return amount;
+  }
+  // 金額を受け取って、それが所持金の20%以下ならその金額、20%以上なら所持金の20%を返す、calculateWithdrawAmountというメソッドを作成してください。
+}
+```
+
+## 引き落とせる最大額の表示
+
+```js
+function withdrawPage(bankAccount) {
+  let container = document.createElement("div");
+  container.classList.add("p-5");
+
+  let withdrawContainer = document.createElement("div");
+  container.append(withdrawContainer);
+
+  withdrawContainer.append(
+    billInputSelector("Please Enter The Withdrawal Amount")
+  );
+  withdrawContainer.append(backNextBtn("back", "next"));
+
+  let backBtn = withdrawContainer.querySelectorAll(".back-btn").item(0);
+  backBtn.addEventListener("click", function () {
+    displayNone(config.sidePage);
+    displayBlock(config.bankPage);
+    config.bankPage.append(mainBankPage(bankAccount));
+  });
+
+  let billInputs = withdrawContainer.querySelectorAll(".bill-input");
+
+  for (let i = 0; i < billInputs.length; i++) {
+    billInputs[i].addEventListener("change", function (event) {
+      document.getElementById("withdrawTotal").innerHTML = billSummation(
+        billInputs,
+        "data-bill"
+      ).toString();
+    });
+  }
+
+  let nextBtn = withdrawContainer.querySelectorAll(".next-btn").item(0);
+  nextBtn.addEventListener("click", function () {
+    container.innerHTML = "";
+
+    let confirmDialog = document.createElement("div");
+    confirmDialog.append(
+      billDialog(
+        "The money you are going to take is ...",
+        billInputs,
+        "data-bill"
+      )
+    );
+    container.append(confirmDialog);
+
+    // <div class="d-flex bg-danger py-1 py-md-2 mb-3 text-white">
+    //     <p class="col-8 text-left rem1p5">Total to be withdrawn: </p>
+    //     <p class="col-4 text-right rem1p5">$150</p>
+    // </div>
+
+    // HTMLを追加し、金額のところに引き落とすことができる金額を表示してください。
+    // confirmDialogコンテナに追加してください。
+    // backNextBtn関数を使って、Go Back、Confirmボタンを追加してください。
+    // ここからJavaScriptを記述してください。
+
+    let total = billSummation(billInputs, "data-bill");
+    confirmDialog.innerHTML = `
+    <div class="d-flex bg-danger py-1 py-md-2 mb-3 text-white">
+        <p class="col-8 text-left rem1p5">Total to be withdrawn: </p>
+        <p class="col-4 text-right rem1p5">$${bankAccount.calculateWithdrawAmount(
+          total
+        )}</p>
+    </div>
+    `;
+
+    confirmDialog.append(backNextBtn("Go back", "Confirm"));
+  });
+
+  return container;
+}
+```
+
+## 引き落とし&残高アップデート
+
+```js
+
+withdraw(amount){
+  this.money -= this.calculateWithdrawAmount(amount);
+  return this.money;
+}
+
+let nextBtn = withdrawContainer.querySelectorAll(".next-btn").item(0);
+nextBtn.addEventListener("click", function () {
+  container.innerHTML = "";
+
+  let confirmDialog = document.createElement("div");
+  confirmDialog.append(
+    billDialog(
+      "The money you are going to take is ...",
+      billInputs,
+      "data-bill"
+    )
+  );
+  container.append(confirmDialog);
+
+  let total = billSummation(billInputs, "data-bill");
+
+  confirmDialog.innerHTML += `
+            <div class="d-flex bg-danger py-1 py-md-2 mb-3 text-white">
+                <p class="col-8 text-left rem1p5">Total to be withdrawn: </p>
+                <p class="col-4 text-right rem1p5">$${bankAccount.calculateWithdrawAmount(
+                  total
+                )}</p>
+            </div>
+        `;
+
+  let withdrawConfirmBtns = backNextBtn("Go Back", "Confirm");
+  confirmDialog.append(withdrawConfirmBtns);
+
+  // Go Backボタンがクリックされたら、前のページに戻る処理を実装してください。
+  // Confirmボタンがクリックされると、ダッシュボードに戻る処理を実装してください。
+  // 残高のアップデートを忘れないようにしてください。
+  // ここからJavaScriptを記述してください。
+
+  let confirmBackBtn = withdrawConfirmBtns.querySelectorAll(".back-btn")[0];
+  let confirmNextBtn = withdrawConfirmBtns.querySelectorAll(".next-btn")[0];
+
+  confirmBackBtn.addEventListener("click", function(){
+    container.innerHTML = "";
+    container.append(withdrawContainer);
+  });
+
+  confirmNextBtn.addEventListener("click", function(){
+    bankAccount.withdraw(total);
+    displayNone(config.sidePage);
+    displayBlock(config.bankPage);
+    config.bankPage.append(mainBankPage(bankAccount));
+  });
+});
+```
+
+## DRY 対策
+
+```js
+menuCon
+  .querySelectorAll("#withdrawBtn")[0]
+  .addEventListener("click", function () {
+    sideBankSwitch();
+    config.sidePage.append(withdrawPage(bankAccount));
+  });
+
+menuCon
+  .querySelectorAll("#depositBtn")[0]
+  .addEventListener("click", function () {
+    sideBankSwitch();
+    console.log("testing 1");
+  });
+
+menuCon
+  .querySelectorAll("#comeBackLaterBtn")[0]
+  .addEventListener("click", function () {
+    sideBankSwitch();
+    console.log("testing 2");
+  });
+
+//共通パーツ化
+function sideBankSwitch() {
+  displayNone(config.bankPage);
+  displayBlock(config.sidePage);
+  config.bankPage.innerHTML = "";
+  config.sidePage.innerHTML = "";
+}
+```
